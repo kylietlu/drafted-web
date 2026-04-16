@@ -1,5 +1,7 @@
 const navToggle = document.querySelector(".nav-toggle");
 const siteNav = document.querySelector(".site-nav");
+const siteHeader = document.querySelector(".site-header");
+const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 if (navToggle && siteNav) {
   navToggle.addEventListener("click", () => {
@@ -7,6 +9,14 @@ if (navToggle && siteNav) {
     navToggle.setAttribute("aria-expanded", String(open));
   });
 }
+
+const updateHeaderState = () => {
+  if (!siteHeader) return;
+  siteHeader.classList.toggle("is-scrolled", window.scrollY > 12);
+};
+
+updateHeaderState();
+window.addEventListener("scroll", updateHeaderState, { passive: true });
 
 for (const form of document.querySelectorAll("form[data-mailto]")) {
   form.addEventListener("submit", (event) => {
@@ -51,4 +61,72 @@ if (cookieBanner) {
   cookieSettingsLink?.addEventListener("click", () => {
     cookieBanner.hidden = false;
   });
+}
+
+const revealTargets = document.querySelectorAll(
+  ".section-heading, .testimonial-card, .stat-card, .case-card, .portfolio-card, .blog-card, .blog-feature, .form-card, .prose.card, .article-card"
+);
+
+if (prefersReducedMotion) {
+  revealTargets.forEach((element) => element.classList.add("is-visible"));
+} else {
+  revealTargets.forEach((element, index) => {
+    element.classList.add("reveal");
+    element.style.setProperty("--reveal-delay", `${Math.min(index % 6, 5) * 70}ms`);
+  });
+
+  const revealObserver = new IntersectionObserver(
+    (entries, observer) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        entry.target.classList.add("is-visible");
+        observer.unobserve(entry.target);
+      }
+    },
+    { threshold: 0.12, rootMargin: "0px 0px -6% 0px" }
+  );
+
+  revealTargets.forEach((element) => revealObserver.observe(element));
+}
+
+const animateCount = (element) => {
+  const original = element.textContent.trim();
+  const match = original.match(/^(\d+)(.*)$/);
+  if (!match) return;
+
+  const end = Number.parseInt(match[1], 10);
+  const suffix = match[2] || "";
+  const duration = 1400;
+  const startTime = performance.now();
+
+  const step = (now) => {
+    const progress = Math.min((now - startTime) / duration, 1);
+    const eased = 1 - Math.pow(1 - progress, 3);
+    element.textContent = `${Math.floor(end * eased)}${suffix}`;
+    if (progress < 1) {
+      requestAnimationFrame(step);
+    } else {
+      element.textContent = original;
+    }
+  };
+
+  requestAnimationFrame(step);
+};
+
+for (const stat of document.querySelectorAll(".stat-card strong")) {
+  stat.classList.add("stat-number");
+  if (prefersReducedMotion) continue;
+
+  const observer = new IntersectionObserver(
+    (entries, obs) => {
+      for (const entry of entries) {
+        if (!entry.isIntersecting) continue;
+        animateCount(entry.target);
+        obs.unobserve(entry.target);
+      }
+    },
+    { threshold: 0.6 }
+  );
+
+  observer.observe(stat);
 }
