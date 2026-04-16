@@ -1,0 +1,39 @@
+{{ define "main" }}
+  {{ $posts := .Pages.ByDate.Reverse }}
+  {{ $featured := index $posts 0 }}
+  {{ $rest := after 1 $posts }}
+
+  <section class="section page-hero">
+    <div class="container narrow center">
+      <h1 class="page-title">{{ .Title }}</h1>
+      <p class="page-intro">{{ .Description }}</p>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container blog-grid">
+      {{ with $featured }}
+        <article class="card blog-feature">
+          <a href="{{ .RelPermalink }}"><img src="{{ .Params.image | relURL }}" alt="{{ .Title }}"></a>
+          <div class="blog-feature-copy">
+            <a href="{{ .RelPermalink }}"><h2>{{ .Title }}</h2></a>
+            <p>{{ .Summary }}</p>
+            <a class="text-link" href="{{ .RelPermalink }}">Read More</a>
+          </div>
+        </article>
+      {{ end }}
+      <div class="blog-list">
+        {{ range $rest }}
+          <article class="card blog-card">
+            <a href="{{ .RelPermalink }}"><img src="{{ .Params.image | relURL }}" alt="{{ .Title }}"></a>
+            <div>
+              <a href="{{ .RelPermalink }}"><h3>{{ .Title }}</h3></a>
+              <p>{{ .Summary }}</p>
+              <a class="text-link" href="{{ .RelPermalink }}">Read More</a>
+            </div>
+          </article>
+        {{ end }}
+      </div>
+    </div>
+  </section>
+{{ end }}

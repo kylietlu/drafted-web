@@ -1,0 +1,65 @@
+baseURL = "https://www.draftedbykylie.com/"
+languageCode = "en-us"
+title = "Drafted."
+theme = "drafted"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
+
+[taxonomies]
+
+[params]
+  description = "Freelance content marketing consultant for B2B teams that need clearer messaging, stronger content, and dependable hands-on support."
+  email = "draftedbykylie@gmail.com"
+  kvk = "97788678"
+  linkedin = "https://www.linkedin.com/company/drafted-marketing"
+  contactMailtoSubject = "Drafted website inquiry"
+  newsletterMailtoSubject = "Newsletter signup"
+
+[menu]
+  [[menu.main]]
+    name = "Home"
+    url = "/"
+    weight = 10
+  [[menu.main]]
+    name = "About"
+    url = "/about/"
+    weight = 20
+  [[menu.main]]
+    name = "Services"
+    url = "/#services"
+    weight = 30
+  [[menu.main]]
+    name = "Testimonials"
+    url = "/#testimonials"
+    weight = 40
+  [[menu.main]]
+    name = "Blog"
+    url = "/blog/"
+    weight = 50
+  [[menu.footer_primary]]
+    name = "About"
+    url = "/about/"
+    weight = 10
+  [[menu.footer_primary]]
+    name = "Blog"
+    url = "/blog/"
+    weight = 20
+  [[menu.footer_primary]]
+    name = "Client work"
+    url = "/client-work/"
+    weight = 30
+  [[menu.footer_secondary]]
+    name = "Contact"
+    url = "/contact/"
+    weight = 10
+  [[menu.footer_secondary]]
+    name = "Newsletter"
+    url = "/newsletter/"
+    weight = 20
+  [[menu.footer_secondary]]
+    name = "Legal"
+    url = "/legal/"
+    weight = 30

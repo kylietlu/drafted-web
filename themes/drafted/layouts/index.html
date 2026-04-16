@@ -1,0 +1,97 @@
+{{ define "main" }}
+  <section class="section hero-section">
+    <div class="container hero-grid">
+      <div class="hero-copy">
+        <p class="eyebrow">Content Marketing Consultant for B2B</p>
+        <h1>Content not pulling its weight?<br>Let's fix that.</h1>
+        <p class="lead">Drafted is a solo marketing consultancy built on years of experience working with global B2B tech brands. I help teams sharpen their messaging, speed up delivery, and make sure their content actually works.</p>
+        <p class="lead">Whether you need stronger copy, clearer positioning, or an experienced marketer who can jump in and hit the ground running, I'm here to help.</p>
+        <div class="button-row">
+          <a class="btn primary" href="#contact">Sounds great! Let's go</a>
+          <a class="btn" href="/client-work/">View portfolio</a>
+        </div>
+      </div>
+      <div class="hero-media card">
+        <img src="{{ "/images/hero.jpg" | relURL }}" alt="Drafted homepage hero">
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="services">
+    <div class="container">
+      <div class="section-heading center">
+        <h2>I make it easier to...</h2>
+      </div>
+      <div class="service-grid">
+        <article class="card service-card">
+          <h3>turn your content strategy into a growth engine</h3>
+          <p>by creating a clear, goal-oriented content plan that connects with your audience and supports your business growth.</p>
+        </article>
+        <article class="card service-card">
+          <h3>reach more of the right people, faster</h3>
+          <p>by using data and insights to fine-tune your messaging, improve performance, and get the most out of your marketing efforts.</p>
+        </article>
+        <article class="card service-card">
+          <h3>sound like a pro</h3>
+          <p>by transforming your ideas into sharp, engaging content that sounds like you, just better. Think ghostwriting, blog writing, or polishing messy drafts.</p>
+        </article>
+        <article class="card service-card">
+          <h3>say it like a native</h3>
+          <p>by translating your Dutch content into fluent, natural English. Say goodbye to steenkolenengels and stiff translations.</p>
+        </article>
+        <article class="card service-card">
+          <h3>stay on track when things get busy</h3>
+          <p>by jumping in to keep things moving. I support launches, campaigns, and content with dependable, hands-on help.</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section logo-strip-section">
+    <div class="container">
+      <p class="logo-strip-label">Working with teams across B2B tech and innovation ecosystems:</p>
+      <div class="logo-strip">
+        <div class="logo-track">
+          <img src="{{ "/images/logos/intwo.png" | relURL }}" alt="InTWO">
+          <img src="{{ "/images/logos/cognizant.png" | relURL }}" alt="Cognizant">
+          <img src="{{ "/images/logos/crystalloids.webp" | relURL }}" alt="Crystalloids">
+          <img src="{{ "/images/logos/esa-bic.png" | relURL }}" alt="ESA BIC">
+          <img src="{{ "/images/logos/microsoft.png" | relURL }}" alt="Microsoft">
+          <img src="{{ "/images/logos/aws.png" | relURL }}" alt="AWS">
+          <img src="{{ "/images/logos/google-cloud.png" | relURL }}" alt="Google Cloud">
+          <img src="{{ "/images/logos/pho-delta.webp" | relURL }}" alt="PhotonDelta">
+          <img src="{{ "/images/logos/cionet.png" | relURL }}" alt="CIONET">
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="testimonials">
+    <div class="container">
+      <div class="section-heading center">
+        <h2>Content that pulls its weight. And then some.</h2>
+        <p>Don't just take it from me. Here's what others have said about working together:</p>
+      </div>
+      <div class="testimonial-grid">
+        <article class="card testimonial-card"><p>"Kylie brought fresh strategic ideas and was instrumental in shaping our event for C-level executives. Her input went far beyond execution; she really helped us think through the bigger picture."</p><strong>Senior Marketing &amp; Events Manager</strong><span>CIONET Netherlands</span></article>
+        <article class="card testimonial-card"><p>"Kylie understands how to get the essence of a brand and translate that into clear, compelling messaging. She doesn't just write well, she thinks strategically."</p><strong>Head of Consulting</strong><span>Cognizant Belgium</span></article>
+        <article class="card testimonial-card"><p>"Kylie has a strong understanding of content strategy and knows how to make messages land. She brings structure and clarity to every stage, from planning to final execution."</p><strong>Marketing Director</strong><span>Cognizant Netherlands</span></article>
+        <article class="card testimonial-card"><p>"It's a pleasure to work with Kylie on anything content. English is her bread and butter and she makes sure to help you achieve just the right connotation in your texts."</p><strong>Marketing Manager</strong><span>Cognizant Belgium</span></article>
+        <article class="card testimonial-card"><p>"Kylie has a rare ability to translate complex tech into clear, compelling content. Her mix of creative storytelling and strategic thinking made her an asset across multiple teams and regions."</p><strong>Senior Digital Content Expert</strong><span>Cognizant Norway</span></article>
+        <article class="card testimonial-card"><p>"Kylie consistently delivered high-impact, relevant content that helped us grow our brand visibility and engagement. She brought energy, structure, and a clear strategic mindset to everything she touched."</p><strong>Head of Retail and Consumer Goods Consulting</strong><span>Cognizant Netherlands</span></article>
+      </div>
+    </div>
+  </section>
+
+  <section class="section contact-section" id="contact">
+    <div class="container narrow">
+      <div class="section-heading center">
+        <h2>Ready to get things moving?</h2>
+        <p>Let's get the conversation started.</p>
+      </div>
+      <div class="card form-card">
+        {{ partial "contact-form.html" . }}
+      </div>
+    </div>
+  </section>
+{{ end }}

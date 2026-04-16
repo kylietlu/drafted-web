@@ -1,0 +1,27 @@
+<footer class="site-footer">
+  <div class="container footer-grid">
+    <div>
+      <p class="footer-copy">&copy; 2026 Drafted.</p>
+      <p class="footer-meta">KVK: {{ .Site.Params.kvk }}</p>
+      <img class="footer-logo" src="{{ "/images/logo.png" | relURL }}" alt="Drafted logo">
+      <p><a class="social-link" href="{{ .Site.Params.linkedin }}" target="_blank" rel="noopener">LinkedIn</a></p>
+      <p><button type="button" class="footer-cookie-link">Cookie Settings</button></p>
+    </div>
+    <div>
+      <h4>The ABCs</h4>
+      <ul>
+        {{ range .Site.Menus.footer_primary }}
+          <li><a href="{{ .URL | relURL }}">{{ .Name }}</a></li>
+        {{ end }}
+      </ul>
+    </div>
+    <div>
+      <h4>The XYZs</h4>
+      <ul>
+        {{ range .Site.Menus.footer_secondary }}
+          <li><a href="{{ .URL | relURL }}">{{ .Name }}</a></li>
+        {{ end }}
+      </ul>
+    </div>
+  </div>
+</footer>

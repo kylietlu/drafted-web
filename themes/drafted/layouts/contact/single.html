@@ -1,0 +1,21 @@
+{{ define "main" }}
+  <section class="section page-hero">
+    <div class="container narrow">
+      <h1 class="page-title">Contact us</h1>
+    </div>
+  </section>
+
+  <section class="section">
+    <div class="container two-col">
+      <div class="prose card">
+        <h2>Don't worry, "us" is just me.</h2>
+        <p>If you've got a project in mind, a question, or just want to say hi, you can reach me at <a href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a> or use the form on the right.</p>
+        <p><strong>Mailing address:</strong><br>Gravin Juliana van Stolberglaan 31<br>Box G1900<br>2263 AB Leidschendam, The Netherlands</p>
+        <p>Feel free to send me a card. Just know this isn't a walk-in address. I work remotely and meet by appointment only.</p>
+      </div>
+      <div class="card form-card">
+        {{ partial "contact-form.html" . }}
+      </div>
+    </div>
+  </section>
+{{ end }}
