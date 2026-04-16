@@ -300,15 +300,48 @@ p {
 }
 
 .testimonial-grid {
-  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-  gap: 28px;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 42px 50px;
 }
 
 .service-card,
-.testimonial-card,
 .stat-card,
 .case-card {
   padding: 24px;
+}
+
+.testimonial-card {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-self: center;
+  text-align: center;
+  width: 100%;
+  max-width: 340px;
+  padding: 0;
+  background: transparent;
+  border: 0;
+  box-shadow: none;
+}
+
+.testimonial-stars {
+  display: inline-block;
+  margin-bottom: 10px;
+  color: var(--accent);
+  font-size: 19px;
+  line-height: 1;
+  letter-spacing: 0.08em;
+}
+
+.testimonial-stars::before {
+  content: "★★★★★";
+}
+
+.testimonial-card p {
+  margin: 0 0 14px;
+  color: var(--text);
+  font-size: 14px;
+  line-height: 1.55;
 }
 
 .testimonial-card strong,
@@ -318,7 +351,15 @@ p {
 }
 
 .testimonial-card strong {
-  margin-top: 14px;
+  margin-top: auto;
+  color: var(--text);
+  font-weight: 500;
+  font-size: 14px;
+}
+
+.testimonial-card span {
+  color: var(--muted);
+  font-size: 14px;
 }
 
 .logo-strip-section {
@@ -328,16 +369,29 @@ p {
 .logo-strip-label {
   margin-bottom: 18px;
   color: var(--text);
+  text-align: center;
+  font-size: clamp(20px, 2.4vw, 28px);
+  font-weight: 500;
 }
 
 .logo-strip {
   overflow: hidden;
+  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+  mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+}
+
+.logo-marquee {
+  display: flex;
+  width: max-content;
+  align-items: center;
+  animation: logo-marquee-scroll 36s linear infinite;
 }
 
 .logo-track {
   display: flex;
+  flex-shrink: 0;
   gap: 34px;
-  flex-wrap: wrap;
+  padding-right: 34px;
   align-items: center;
 }
 
@@ -345,6 +399,15 @@ p {
   height: 35px;
   width: auto;
   object-fit: contain;
+}
+
+@keyframes logo-marquee-scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(calc(-50% - 17px));
+  }
 }
 
 .page-hero {
@@ -649,7 +712,8 @@ p {
 
   .site-form .form-grid,
   .stats-grid,
-  .service-grid {
+  .service-grid,
+  .testimonial-grid {
     grid-template-columns: 1fr;
   }
 
