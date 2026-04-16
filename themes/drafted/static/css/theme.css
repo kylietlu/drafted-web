@@ -19,6 +19,12 @@ html {
   scroll-behavior: smooth;
 }
 
+#services,
+#testimonials,
+#contact {
+  scroll-margin-top: 96px;
+}
+
 body {
   margin: 0;
   font: 400 17px/1.6 "Noto Sans", sans-serif;
