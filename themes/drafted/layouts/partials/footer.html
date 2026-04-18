@@ -1,26 +1,40 @@
-<footer class="site-footer">
-  <div class="container footer-grid">
-    <div>
-      <p class="footer-copy">&copy; 2026 Drafted.</p>
-      <p class="footer-meta">KVK: {{ .Site.Params.kvk }}</p>
-      <img class="footer-logo" src="{{ "/images/logo.png" | relURL }}" alt="Drafted logo">
-      <p><a class="social-link" href="{{ .Site.Params.linkedin }}" target="_blank" rel="noopener">LinkedIn</a></p>
-      <p><button type="button" class="footer-cookie-link">Cookie Settings</button></p>
-    </div>
-    <div>
-      <h4>The ABCs</h4>
-      <ul>
-        {{ range .Site.Menus.footer_primary }}
-          <li><a href="{{ .URL | relURL }}">{{ .Name }}</a></li>
-        {{ end }}
-      </ul>
-    </div>
-    <div>
-      <h4>The XYZs</h4>
-      <ul>
-        {{ range .Site.Menus.footer_secondary }}
-          <li><a href="{{ .URL | relURL }}">{{ .Name }}</a></li>
-        {{ end }}
+<footer class="site-footer _c4b89fde">
+  <div class="wr">
+    <div class="_bea1daea">
+      <div class="_240f2910">
+        <span class="_c0e4633f">
+          <p>&copy; 2026 Drafted.</p>
+          <p><span class="footer-kvk-inline">KVK: {{ .Site.Params.kvk }}</span></p>
+        </span>
+        <div class="_a6d0f97b" style="--scale:0.5">
+          <img src="{{ "/images/logo.png" | relURL }}" class="_9fc8f72f" alt="Drafted logo">
+        </div>
+        <div class="_4dba2c1d">
+          <a href="{{ .Site.Params.linkedin }}" target="_blank" rel="noopener" class="_3d4606c5" aria-label="LinkedIn">
+            <div class="um-icon _317000c4">
+              <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 448 512" width="24" height="24" aria-hidden="true"><path d="M416 32H31.9A32.1 32.1 0 0 0 0 64.3v383.4A32.1 32.1 0 0 0 31.9 480H416c17.6 0 32-14.5 32-32.3V64.3A32.2 32.2 0 0 0 416 32zM135.4 416H69V202.2h66.5V416zm-33.2-243a38.5 38.5 0 1 1 0-77 38.5 38.5 0 0 1 0 77zm282.1 243h-66.4V312c0-24.8-.5-56.7-34.5-56.7-34.6 0-39.9 27-39.9 54.9V416h-66.4V202.2h63.7v29.2h.9c8.9-16.8 30.6-34.5 62.9-34.5 67.2 0 79.7 44.3 79.7 101.9V416z" fill="currentColor"></path></svg>
+            </div>
+          </a>
+        </div>
+        <div class="_370825cf umsoPluginTarget"></div>
+      </div>
+      <ul class="_6d77f4ac">
+        <li class="_15091c77">
+          <h4 class="_f7277ae9"><p>The ABCs</p></h4>
+          <ul class="_a1fe80f4">
+            {{ range .Site.Menus.footer_primary }}
+              <li class="_171c7314"><a href="{{ .URL | relURL }}" class="_7d179ab3">{{ .Name }}</a></li>
+            {{ end }}
+          </ul>
+        </li>
+        <li class="_15091c77">
+          <h4 class="_f7277ae9"><p>The XYZs</p></h4>
+          <ul class="_a1fe80f4">
+            {{ range .Site.Menus.footer_secondary }}
+              <li class="_171c7314"><a href="{{ .URL | relURL }}" class="_7d179ab3">{{ .Name }}</a></li>
+            {{ end }}
+          </ul>
+        </li>
       </ul>
     </div>
   </div>

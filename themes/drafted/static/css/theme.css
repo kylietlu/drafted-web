@@ -777,52 +777,109 @@ p {
 }
 
 .site-footer {
+  position: relative;
+  display: flex;
   padding: 30px 0 60px;
   border-top: 1px solid var(--border);
 }
 
-.footer-grid {
-  display: grid;
-  gap: 32px;
-  grid-template-columns: 1.2fr 1fr 1fr;
+.site-footer .wr {
+  width: min(var(--container), calc(100% - 32px));
+  margin: 0 auto;
 }
 
-.site-footer h4 {
-  margin: 0 0 10px;
+._bea1daea {
+  gap: 40px;
+  display: flex;
+  justify-content: space-between;
 }
 
-.site-footer ul {
-  list-style: none;
+._c0e4633f {
+  font-size: 1em;
+}
+
+._c0e4633f p {
+  margin: 0 0 4px;
+}
+
+.footer-kvk-inline {
+  color: rgba(0, 0, 0, 0.47);
+  font-size: 14px;
+}
+
+._a6d0f97b {
+  margin-top: 10px;
+}
+
+._9fc8f72f {
+  width: 65px;
+  display: block;
+  max-width: 100%;
+}
+
+._4dba2c1d {
+  gap: 10px;
+  display: flex;
+  margin-top: 1em;
+}
+
+._3d4606c5 {
+  color: inherit;
+}
+
+._3d4606c5:hover {
+  color: var(--text);
+}
+
+._317000c4 {
+  display: block;
+}
+
+._370825cf {
+  margin: -10px;
+  display: flex;
+  margin-top: 10px;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+._370825cf > * {
+  margin: 10px;
+}
+
+._6d77f4ac {
+  gap: 80px;
+  margin: 0;
+  display: flex;
   padding: 0;
+  flex-wrap: wrap;
+  list-style: none;
+}
+
+._f7277ae9 {
+  color: var(--text);
+  margin: 0 0 5px;
+  font-weight: 500;
+}
+
+._f7277ae9 p {
   margin: 0;
 }
 
-.site-footer li {
-  margin: 8px 0;
-}
-
-.footer-logo {
-  width: 65px;
-  margin: 10px 0 16px;
-}
-
-.footer-copy,
-.footer-meta {
-  margin-bottom: 4px;
-}
-
-.social-link {
-  color: var(--text);
-}
-
-.footer-cookie-link {
+._a1fe80f4 {
+  margin: 0;
   padding: 0;
-  border: 0;
-  background: transparent;
-  color: var(--text);
-  font: inherit;
-  cursor: pointer;
-  text-decoration: underline;
+  list-style: none;
+}
+
+._171c7314 {
+  padding: 5px 0;
+  font-size: 0.9em;
+}
+
+._7d179ab3 {
+  color: var(--muted);
+  padding: 10px 0;
 }
 
 .cookie-banner {
@@ -898,7 +955,6 @@ p {
 @media (max-width: 900px) {
   .hero-grid,
   .two-col,
-  .footer-grid,
   .blog-feature {
     grid-template-columns: 1fr;
   }
@@ -940,6 +996,12 @@ p {
 @media (max-width: 700px) {
   body {
     font-size: 16px;
+  }
+
+  ._bea1daea {
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: flex-start;
   }
 
   .site-form .form-grid,

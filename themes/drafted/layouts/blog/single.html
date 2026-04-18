@@ -1,19 +1,28 @@
+{{ define "extra_head" }}
+  {{ $slug := .File.ContentBaseName }}
+  {{ partial (printf "blog-mirror/%s-styles.html" $slug) . }}
+  <style>
+    .site-header .site-nav,
+    .site-footer .container {
+      width: 100%;
+    }
+
+    .site-header .site-nav {
+      justify-content: flex-start;
+    }
+
+    .site-header .header-cta {
+      margin-left: auto !important;
+    }
+
+    .site-header .btn,
+    .site-header .btn:hover {
+      border-radius: 10px;
+    }
+  </style>
+{{ end }}
+
 {{ define "main" }}
-  <section class="section article-section">
-    <div class="container article-shell">
-      <article class="card article-card">
-        <header class="article-header">
-          <h1>{{ .Title }}</h1>
-        </header>
-        {{ with .Params.image }}
-          <div class="article-cover">
-            <img src="{{ . | relURL }}" alt="{{ $.Title }}">
-          </div>
-        {{ end }}
-        <div class="prose article-content">
-          {{ .Content }}
-        </div>
-      </article>
-    </div>
-  </section>
+  {{ $slug := .File.ContentBaseName }}
+  {{ partial (printf "blog-mirror/%s-body.html" $slug) . }}
 {{ end }}
