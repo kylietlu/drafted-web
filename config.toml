@@ -33,7 +33,7 @@ theme = "drafted"
     weight = 30
   [[menu.main]]
     name = "Testimonials"
-    url = "/#testimonials"
+    url = "/client-work#testimonials"
     weight = 40
   [[menu.main]]
     name = "Blog"
