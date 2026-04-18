@@ -204,14 +204,12 @@ p {
   display: flex;
   flex: 1;
   align-items: center;
-  justify-content: space-between;
+  justify-content: flex-start;
   gap: 20px;
 }
 
 .site-nav ul {
   display: flex;
-  flex: 1;
-  justify-content: center;
   gap: 6px;
   list-style: none;
   margin: 0;
@@ -219,7 +217,7 @@ p {
 }
 
 .header-cta {
-  margin-left: 24px;
+  margin-left: auto;
   flex-shrink: 0;
 }
 

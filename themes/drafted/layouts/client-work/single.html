@@ -4,6 +4,15 @@
     {{ partial "head.html" . }}
     {{ partial "client-work-styles.html" . }}
     <style>
+      .site-header .site-nav {
+        width: 100%;
+        justify-content: flex-start;
+      }
+
+      .site-header .header-cta {
+        margin-left: auto !important;
+      }
+
       .site-header .btn,
       .site-header .btn:hover {
         border-radius: 10px;
