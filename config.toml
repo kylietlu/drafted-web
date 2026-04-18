@@ -39,6 +39,10 @@ theme = "drafted"
     name = "Blog"
     url = "/blog/"
     weight = 50
+  [[menu.main]]
+    name = "Contact"
+    url = "/contact/"
+    weight = 60
   [[menu.footer_primary]]
     name = "About"
     url = "/about/"

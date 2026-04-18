@@ -1,0 +1,204 @@
+<script>!function(){const t=document.querySelectorAll('.umso-animated');const e=new IntersectionObserver(((t,e)=>{t.forEach(((t,n)=>{const o=t.target,a=function(t){const e=t.getBoundingClientRect(),n=window.innerHeight;let o=.3/(e.height/n+.2);return o=o>.1?Math.round(10*o)/10:Math.round(20*o)/20,o>1&&(o=1),o}(o);t.isIntersecting&&t.intersectionRatio>=a&&(!function(t,e){const n=parseFloat(t.style.getPropertyValue('--animationStagger'))||0,o=parseFloat(t.style.getPropertyValue('--animationDelay'))||0;t.style.animationDelay=`${o+n*e}ms`}(o,n),o.classList.add('umso-animating'),e.unobserve(o))}))}),{threshold:[0,.05,.1,.2,.3,.4,.5,.6,.7,.8,.9,1]});setTimeout((()=>{t.forEach((t=>e.observe(t)))}),50)}();</script><script>!function(){const t=t=>{const e=t.getAttribute('data-value');return-1===e?.toString().indexOf('.')?0:e?.toString().split('.')[1].length||0},e=function(e){new CountUp(e,e.getAttribute('data-value'),(e=>{const n=document.getElementsByTagName('html')[0].getAttribute('lang');return{separator:1e3.toLocaleString(n)[1],decimal:1.1.toLocaleString(n)[1],decimalPlaces:t(e)}})(e)).start(),e.classList.remove('countup')},n=function(){document.querySelectorAll('.countup').forEach((t=>{(function(t,e){const n=t.getBoundingClientRect(),o=window.innerHeight||document.documentElement.clientHeight;return!(Math.floor(100-(n.top>=0?0:n.top)/+-n.height*100)<e||Math.floor(100-(n.bottom-o)/n.height*100)<e)})(t,50)&&e(t)}))};let o=!1;document.addEventListener('scroll',(function(t){o||(window.requestAnimationFrame((function(){n(),o=!1})),o=!0)})),window.addEventListener('load',(function(t){n()}))}();</script><script>var __assign =
+    (this && this.__assign) ||
+    function () {
+      return (__assign =
+        Object.assign ||
+        function (t) {
+          for (var i, a = 1, n = arguments.length; a < n; a++)
+            for (var s in (i = arguments[a])) Object.prototype.hasOwnProperty.call(i, s) && (t[s] = i[s])
+          return t
+        }).apply(this, arguments)
+    },
+  CountUp = (function () {
+    function t(t, i, a) {
+      var n = this
+      ;(this.endVal = i),
+        (this.options = a),
+        (this.version = '2.1.0'),
+        (this.defaults = {
+          startVal: 0,
+          decimalPlaces: 0,
+          duration: 2,
+          useEasing: !0,
+          useGrouping: !0,
+          smartEasingThreshold: 999,
+          smartEasingAmount: 333,
+          separator: ',',
+          decimal: '.',
+          prefix: '',
+          suffix: '',
+          enableScrollSpy: !1,
+          scrollSpyDelay: 200
+        }),
+        (this.finalEndVal = null),
+        (this.useEasing = !0),
+        (this.countDown = !1),
+        (this.error = ''),
+        (this.startVal = 0),
+        (this.paused = !0),
+        (this.count = function (t) {
+          n.startTime || (n.startTime = t)
+          var i = t - n.startTime
+          ;(n.remaining = n.duration - i),
+            n.useEasing
+              ? n.countDown
+                ? (n.frameVal = n.startVal - n.easingFn(i, 0, n.startVal - n.endVal, n.duration))
+                : (n.frameVal = n.easingFn(i, n.startVal, n.endVal - n.startVal, n.duration))
+              : n.countDown
+              ? (n.frameVal = n.startVal - (n.startVal - n.endVal) * (i / n.duration))
+              : (n.frameVal = n.startVal + (n.endVal - n.startVal) * (i / n.duration)),
+            n.countDown
+              ? (n.frameVal = n.frameVal < n.endVal ? n.endVal : n.frameVal)
+              : (n.frameVal = n.frameVal > n.endVal ? n.endVal : n.frameVal),
+            (n.frameVal = Number(n.frameVal.toFixed(n.options.decimalPlaces))),
+            n.printValue(n.frameVal),
+            i < n.duration
+              ? (n.rAF = requestAnimationFrame(n.count))
+              : null !== n.finalEndVal
+              ? n.update(n.finalEndVal)
+              : n.callback && n.callback()
+        }),
+        (this.formatNumber = function (t) {
+          var i,
+            a,
+            s,
+            e,
+            r = t < 0 ? '-' : ''
+          i = Math.abs(t).toFixed(n.options.decimalPlaces)
+          var o = (i += '').split('.')
+          if (((a = o[0]), (s = o.length > 1 ? n.options.decimal + o[1] : ''), n.options.useGrouping)) {
+            e = ''
+            for (var l = 0, h = a.length; l < h; ++l)
+              0 !== l && l % 3 == 0 && (e = n.options.separator + e), (e = a[h - l - 1] + e)
+            a = e
+          }
+          return (
+            n.options.numerals &&
+              n.options.numerals.length &&
+              ((a = a.replace(/[0-9]/g, function (t) {
+                return n.options.numerals[+t]
+              })),
+              (s = s.replace(/[0-9]/g, function (t) {
+                return n.options.numerals[+t]
+              }))),
+            r + n.options.prefix + a + s + n.options.suffix
+          )
+        }),
+        (this.easeOutExpo = function (t, i, a, n) {
+          return (a * (1 - Math.pow(2, (-10 * t) / n)) * 1024) / 1023 + i
+        }),
+        (this.options = __assign(__assign({}, this.defaults), a)),
+        (this.formattingFn = this.options.formattingFn ? this.options.formattingFn : this.formatNumber),
+        (this.easingFn = this.options.easingFn ? this.options.easingFn : this.easeOutExpo),
+        (this.startVal = this.validateValue(this.options.startVal)),
+        (this.frameVal = this.startVal),
+        (this.endVal = this.validateValue(i)),
+        (this.options.decimalPlaces = Math.max(this.options.decimalPlaces)),
+        this.resetDuration(),
+        (this.options.separator = String(this.options.separator)),
+        (this.useEasing = this.options.useEasing),
+        '' === this.options.separator && (this.options.useGrouping = !1),
+        (this.el = 'string' == typeof t ? document.getElementById(t) : t),
+        this.el ? this.printValue(this.startVal) : (this.error = '[CountUp] target is null or undefined'),
+        void 0 !== window &&
+          this.options.enableScrollSpy &&
+          (this.error
+            ? console.error(this.error, t)
+            : ((window.onScrollFns = window.onScrollFns || []),
+              window.onScrollFns.push(function () {
+                return n.handleScroll(n)
+              }),
+              (window.onscroll = function () {
+                window.onScrollFns.forEach(function (t) {
+                  return t()
+                })
+              }),
+              this.handleScroll(this)))
+    }
+    return (
+      (t.prototype.handleScroll = function (t) {
+        if (t && window) {
+          var i = window.innerHeight + window.scrollY,
+            a = t.el.offsetTop + t.el.offsetHeight
+          a < i && a > window.scrollY && t.paused
+            ? ((t.paused = !1),
+              setTimeout(function () {
+                return t.start()
+              }, t.options.scrollSpyDelay))
+            : window.scrollY > a && !t.paused && t.reset()
+        }
+      }),
+      (t.prototype.determineDirectionAndSmartEasing = function () {
+        var t = this.finalEndVal ? this.finalEndVal : this.endVal
+        this.countDown = this.startVal > t
+        var i = t - this.startVal
+        if (Math.abs(i) > this.options.smartEasingThreshold) {
+          this.finalEndVal = t
+          var a = this.countDown ? 1 : -1
+          ;(this.endVal = t + a * this.options.smartEasingAmount), (this.duration = this.duration / 2)
+        } else (this.endVal = t), (this.finalEndVal = null)
+        this.finalEndVal ? (this.useEasing = !1) : (this.useEasing = this.options.useEasing)
+      }),
+      (t.prototype.start = function (t) {
+        this.error ||
+          ((this.callback = t),
+          this.duration > 0
+            ? (this.determineDirectionAndSmartEasing(),
+              (this.paused = !1),
+              (this.rAF = requestAnimationFrame(this.count)))
+            : this.printValue(this.endVal))
+      }),
+      (t.prototype.pauseResume = function () {
+        this.paused
+          ? ((this.startTime = null),
+            (this.duration = this.remaining),
+            (this.startVal = this.frameVal),
+            this.determineDirectionAndSmartEasing(),
+            (this.rAF = requestAnimationFrame(this.count)))
+          : cancelAnimationFrame(this.rAF),
+          (this.paused = !this.paused)
+      }),
+      (t.prototype.reset = function () {
+        cancelAnimationFrame(this.rAF),
+          (this.paused = !0),
+          this.resetDuration(),
+          (this.startVal = this.validateValue(this.options.startVal)),
+          (this.frameVal = this.startVal),
+          this.printValue(this.startVal)
+      }),
+      (t.prototype.update = function (t) {
+        cancelAnimationFrame(this.rAF),
+          (this.startTime = null),
+          (this.endVal = this.validateValue(t)),
+          this.endVal !== this.frameVal &&
+            ((this.startVal = this.frameVal),
+            this.finalEndVal || this.resetDuration(),
+            (this.finalEndVal = null),
+            this.determineDirectionAndSmartEasing(),
+            (this.rAF = requestAnimationFrame(this.count)))
+      }),
+      (t.prototype.printValue = function (t) {
+        var i = this.formattingFn(t)
+        'INPUT' === this.el.tagName
+          ? (this.el.value = i)
+          : 'text' === this.el.tagName || 'tspan' === this.el.tagName
+          ? (this.el.textContent = i)
+          : (this.el.innerHTML = i)
+      }),
+      (t.prototype.ensureNumber = function (t) {
+        return 'number' == typeof t && !isNaN(t)
+      }),
+      (t.prototype.validateValue = function (t) {
+        var i = Number(t)
+        return this.ensureNumber(i) ? i : ((this.error = '[CountUp] invalid start or end value: ' + t), null)
+      }),
+      (t.prototype.resetDuration = function () {
+        ;(this.startTime = null),
+          (this.duration = 1e3 * Number(this.options.duration)),
+          (this.remaining = this.duration)
+      }),
+      t
+    )
+  })()
+</script><script>document.querySelectorAll('.umso-marquee').forEach((e=>{new ResizeObserver((t=>{for(let r of t){const t=parseFloat(e.style.getPropertyValue('--speed'))||1,s=100,i=r.contentRect.width/(s*t);e.style.setProperty('--width',r.contentRect.width+'px'),e.firstChild&&e.firstChild.style&&(e.firstChild.style.animationDuration=i+'s')}})).observe(e.firstChild)}));</script><script>/*! smooth-scroll v14.2.1 | (c) 2018 Chris Ferdinandi | MIT License | http://github.com/cferdinandi/smooth-scroll */
+!function(e,t){'function'==typeof define&&define.amd?define([],(function(){return t(e)})):'object'==typeof exports?module.exports=t(e):e.SmoothScroll=t(e)}('undefined'!=typeof global?global:'undefined'!=typeof window?window:this,(function(e){'use strict';var t={ignore:'[data-scroll-ignore]',header:null,topOnEmptyHash:!0,speed:500,clip:!0,offset:0,easing:'easeInOutCubic',customEasing:null,updateURL:!0,popstate:!0,emitEvents:!0},n=function(){for(var e={},t=0;t<arguments.length;t++)!function(t){for(var n in t)t.hasOwnProperty(n)&&(e[n]=t[n])}(arguments[t]);return e},o=function(t){return parseInt(e.getComputedStyle(t).height,10)},r=function(e){var t;try{t=decodeURIComponent(e)}catch(n){t=e}return t},a=function(e){'#'===e.charAt(0)&&(e=e.substr(1));for(var t,n=String(e),o=n.length,r=-1,a='',i=n.charCodeAt(0);++r<o;){if(0===(t=n.charCodeAt(r)))throw new InvalidCharacterError('Invalid character: the input contains U+0000.');a+=t>=1&&t<=31||127==t||0===r&&t>=48&&t<=57||1===r&&t>=48&&t<=57&&45===i?'\\'+t.toString(16)+' ':t>=128||45===t||95===t||t>=48&&t<=57||t>=65&&t<=90||t>=97&&t<=122?n.charAt(r):'\\'+n.charAt(r)}var c;try{c=decodeURIComponent('#'+a)}catch(e){c='#'+a}return c},i=function(){return Math.max(document.body.scrollHeight,document.documentElement.scrollHeight,document.body.offsetHeight,document.documentElement.offsetHeight,document.body.clientHeight,document.documentElement.clientHeight)},c=function(e){return e?o(e)+e.offsetTop:0},u=function(t,n,o,r){if(n.emitEvents&&'function'==typeof e.CustomEvent){var a=new CustomEvent(t,{bubbles:!0,detail:{anchor:o,toggle:r}});document.dispatchEvent(a)}};return function(o,s){var l,d,f,m,h,p,g={cancelScroll:function(e){cancelAnimationFrame(p),p=null,e||u('scrollCancel',l)}};g.animateScroll=function(o,r,a){var s=n(l||t,a||{}),d='[object Number]'===Object.prototype.toString.call(o),h=d||!o.tagName?null:o;if(d||h){var v=e.pageYOffset;s.header&&!f&&(f=document.querySelector(s.header)),m||(m=c(f));var y,S,E,b=d?o:function(t,n,o,r){var a=0;if(t.offsetParent)do{a+=t.offsetTop,t=t.offsetParent}while(t);return a=Math.max(a-n-o,0),r&&(a=Math.min(a,i()-e.innerHeight)),a}(h,m,parseInt('function'==typeof s.offset?s.offset(o,r):s.offset,10),s.clip),O=b-v,I=i(),w=0,C=function(t,n){var a=e.pageYOffset;if(t==n||a==n||(v<n&&e.innerHeight+a)>=I)return g.cancelScroll(!0),function(t,n,o){0===t&&document.body.focus(),o||(t.focus(),document.activeElement!==t&&(t.setAttribute('tabindex','-1'),t.focus(),t.style.outline='none'),e.scrollTo(0,n))}(o,n,d),u('scrollStop',s,o,r),y=null,p=null,!0},L=function(t){y||(y=t),S=(w+=t-y)/parseInt(s.speed,10),E=v+O*function(e,t){var n;return'easeInQuad'===e.easing&&(n=t*t),'easeOutQuad'===e.easing&&(n=t*(2-t)),'easeInOutQuad'===e.easing&&(n=t<.5?2*t*t:(4-2*t)*t-1),'easeInCubic'===e.easing&&(n=t*t*t),'easeOutCubic'===e.easing&&(n=--t*t*t+1),'easeInOutCubic'===e.easing&&(n=t<.5?4*t*t*t:(t-1)*(2*t-2)*(2*t-2)+1),'easeInQuart'===e.easing&&(n=t*t*t*t),'easeOutQuart'===e.easing&&(n=1- --t*t*t*t),'easeInOutQuart'===e.easing&&(n=t<.5?8*t*t*t*t:1-8*--t*t*t*t),'easeInQuint'===e.easing&&(n=t*t*t*t*t),'easeOutQuint'===e.easing&&(n=1+--t*t*t*t*t),'easeInOutQuint'===e.easing&&(n=t<.5?16*t*t*t*t*t:1+16*--t*t*t*t*t),e.customEasing&&(n=e.customEasing(t)),n||t}(s,S=S>1?1:S),e.scrollTo(0,Math.floor(E)),C(E,b)||(p=e.requestAnimationFrame(L),y=t)};0===e.pageYOffset&&e.scrollTo(0,0),function(e,t,n){t||history.pushState&&n.updateURL&&history.pushState({smoothScroll:JSON.stringify(n),anchor:e.id},document.title,e===document.documentElement?'#top':'#'+e.id)}(o,d,s),u('scrollStart',s,o,r),g.cancelScroll(!0),e.requestAnimationFrame(L)}};var v=function(t){if((!('matchMedia'in e)||!e.matchMedia('(prefers-reduced-motion)').matches)&&0===t.button&&!t.metaKey&&!t.ctrlKey&&'closest'in t.target&&(d=t.target.closest(o))&&'a'===d.tagName.toLowerCase()&&!t.target.closest(l.ignore)&&d.hostname===e.location.hostname&&d.pathname===e.location.pathname&&/#/.test(d.href)){var n=a(r(d.hash)),i=l.topOnEmptyHash&&'#'===n?document.documentElement:document.querySelector(n);(i=i||'#top'!==n?i:document.documentElement)&&(t.preventDefault(),g.animateScroll(i,d))}},y=function(e){if(null!==history.state&&history.state.smoothScroll&&history.state.smoothScroll===JSON.stringify(l)&&history.state.anchor){var t=document.querySelector(a(r(history.state.anchor)));t&&g.animateScroll(t,null,{updateURL:!1})}},S=function(e){h||(h=setTimeout((function(){h=null,m=c(f)}),66))};return g.destroy=function(){l&&(document.removeEventListener('click',v,!1),e.removeEventListener('resize',S,!1),e.removeEventListener('popstate',y,!1),g.cancelScroll(),l=null,d=null,f=null,m=null,h=null,p=null)},g.init=function(o){if(!('querySelector'in document&&'addEventListener'in e&&'requestAnimationFrame'in e&&'closest'in e.Element.prototype))throw'Smooth Scroll: This browser does not support the required JavaScript methods and browser APIs.';g.destroy(),l=n(t,o||{}),f=l.header?document.querySelector(l.header):null,m=c(f),document.addEventListener('click',v,!1),f&&e.addEventListener('resize',S,!1),l.updateURL&&l.popstate&&e.addEventListener('popstate',y,!1)},g.init(s),g}})),new window.SmoothScroll('a[href*="#"]',{offset:0});</script><script>!function(){const section=document.getElementById('testimonials');if(!section)return;const cards=[...section.querySelectorAll('._94781b48')];if(cards.length<=3)return;cards.slice(3).forEach(card=>card.classList.add('testimonial-collapsed'));const grid=section.querySelector('._a261470e');if(!grid)return;const wrap=document.createElement('div');wrap.className='testimonials-toggle-wrap';const btn=document.createElement('button');btn.type='button';btn.className='btn primary';btn.textContent='View more testimonials';btn.setAttribute('aria-expanded','false');btn.addEventListener('click',function(){const expanded=btn.getAttribute('aria-expanded')==='true';cards.slice(3).forEach(card=>card.classList.toggle('testimonial-collapsed',expanded));btn.setAttribute('aria-expanded',String(!expanded));btn.textContent=expanded?'View more testimonials':'View fewer testimonials';});wrap.appendChild(btn);grid.insertAdjacentElement('afterend',wrap)}();</script>

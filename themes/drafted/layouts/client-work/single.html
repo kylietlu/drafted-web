@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {{ partial "head.html" . }}
+    {{ partial "client-work-styles.html" . }}
+    <style>
+      .site-header .btn,
+      .site-header .btn:hover {
+        border-radius: 10px;
+      }
+    </style>
+  </head>
+  <body>
+    {{ partial "header.html" . }}
+    <main>
+      {{ partial "client-work-body.html" . }}
+    </main>
+    {{ partial "footer.html" . }}
+    {{ partial "cookie-banner.html" . }}
+    <script src="{{ "js/theme.js" | relURL }}"></script>
+    {{ partial "client-work-scripts.html" . }}
+  </body>
+</html>

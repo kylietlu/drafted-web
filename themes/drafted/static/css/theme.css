@@ -202,16 +202,25 @@ p {
 
 .site-nav {
   display: flex;
+  flex: 1;
   align-items: center;
+  justify-content: space-between;
   gap: 20px;
 }
 
 .site-nav ul {
   display: flex;
+  flex: 1;
+  justify-content: center;
   gap: 6px;
   list-style: none;
   margin: 0;
   padding: 0;
+}
+
+.header-cta {
+  margin-left: 24px;
+  flex-shrink: 0;
 }
 
 .site-nav a {
