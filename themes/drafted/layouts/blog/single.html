@@ -140,6 +140,197 @@
       border-radius: 16px;
     }
 
+    .article-carousel-block {
+      margin-top: 2rem;
+    }
+
+    .article-carousel {
+      margin-top: 1rem;
+    }
+
+    .article-carousel-stage {
+      position: relative;
+      min-height: 420px;
+      border-radius: 20px;
+      overflow: hidden;
+      background: #f4f6f7;
+      box-shadow: 0 22px 50px -30px rgba(0, 0, 0, 0.28);
+    }
+
+    .article-carousel-slide {
+      margin: 0;
+      display: none;
+      height: 100%;
+    }
+
+    .article-carousel-slide.is-active {
+      display: block;
+    }
+
+    .article-carousel-image {
+      position: relative;
+      display: block;
+      width: 100%;
+      padding: 0;
+      border: 0;
+      background: transparent;
+      cursor: zoom-in;
+    }
+
+    .article-carousel-image::after {
+      content: "Click to zoom";
+      position: absolute;
+      right: 16px;
+      bottom: 16px;
+      z-index: 1;
+      padding: 8px 12px;
+      border-radius: 999px;
+      background: rgba(7, 19, 28, 0.58);
+      color: #fff;
+      font-size: 13px;
+      line-height: 1;
+      opacity: 0;
+      transform: translateY(6px);
+      transition: opacity 0.2s ease, transform 0.2s ease;
+    }
+
+    .article-carousel-image:hover::after,
+    .article-carousel-image:focus-visible::after {
+      opacity: 1;
+      transform: translateY(0);
+    }
+
+    .article-carousel-slide img {
+      width: 100%;
+      height: 420px;
+      object-fit: cover;
+      border-radius: 0;
+    }
+
+    .article-carousel-controls {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .article-carousel-btn {
+      width: 44px;
+      height: 44px;
+      border: 1px solid var(--border);
+      border-radius: 999px;
+      background: #fff;
+      color: var(--text);
+      font-size: 22px;
+      line-height: 1;
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease, border-color 0.2s ease;
+    }
+
+    .article-carousel-btn:hover {
+      background: #f4f6f7;
+      transform: translateY(-1px);
+    }
+
+    .article-carousel-dots {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 10px;
+      flex: 1;
+    }
+
+    .article-carousel-dot {
+      width: 10px;
+      height: 10px;
+      padding: 0;
+      border: 0;
+      border-radius: 999px;
+      background: rgba(61, 65, 69, 0.25);
+      cursor: pointer;
+      transition: transform 0.2s ease, background 0.2s ease;
+    }
+
+    .article-carousel-dot.is-active {
+      background: var(--accent);
+      transform: scale(1.15);
+    }
+
+    .article-lightbox {
+      position: fixed;
+      inset: 0;
+      z-index: 80;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 18px;
+      padding: 28px;
+      background: rgba(7, 19, 28, 0.88);
+      backdrop-filter: blur(8px);
+    }
+
+    .article-lightbox[hidden] {
+      display: none;
+    }
+
+    .article-lightbox-frame {
+      max-width: min(92vw, 1280px);
+      max-height: 88vh;
+      overflow: auto;
+      border-radius: 20px;
+      background: rgba(255, 255, 255, 0.04);
+      box-shadow: 0 28px 70px -36px rgba(0, 0, 0, 0.5);
+      cursor: zoom-in;
+    }
+
+    .article-lightbox-frame.is-zoomed {
+      cursor: zoom-out;
+    }
+
+    .article-lightbox-frame img {
+      display: block;
+      max-width: min(92vw, 1280px);
+      max-height: 88vh;
+      width: auto;
+      height: auto;
+      border-radius: 20px;
+      transform-origin: center center;
+      transition: transform 0.2s ease;
+    }
+
+    .article-lightbox-frame.is-zoomed img {
+      transform: scale(1.9);
+    }
+
+    .article-lightbox-close,
+    .article-lightbox-nav {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 48px;
+      height: 48px;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, 0.08);
+      color: #fff;
+      font-size: 26px;
+      line-height: 1;
+      cursor: pointer;
+      backdrop-filter: blur(10px);
+    }
+
+    .article-lightbox-close {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+    }
+
+    .article-lightbox-close:hover,
+    .article-lightbox-nav:hover {
+      background: rgba(255, 255, 255, 0.16);
+    }
+
     @media (max-width: 900px) {
       ._5981ddc6 {
         padding: 28px 0 56px;
@@ -168,8 +359,125 @@
       ._1baa4c9d-content {
         margin-top: 30px;
       }
+
+      .article-carousel-stage {
+        min-height: 260px;
+      }
+
+      .article-carousel-image::after {
+        opacity: 1;
+        transform: none;
+        right: 10px;
+        bottom: 10px;
+        padding: 7px 10px;
+        font-size: 12px;
+      }
+
+      .article-carousel-slide img {
+        height: 260px;
+      }
+
+      .article-lightbox {
+        padding: 18px 12px;
+        gap: 10px;
+      }
+
+      .article-lightbox-frame,
+      .article-lightbox-frame img {
+        max-width: calc(100vw - 72px);
+        border-radius: 16px;
+      }
+
+      .article-lightbox-nav {
+        width: 42px;
+        height: 42px;
+        font-size: 22px;
+      }
     }
   </style>
+{{ end }}
+
+{{ define "extra_scripts" }}
+  <script>
+    document.querySelectorAll('[data-carousel]').forEach((carousel) => {
+      const slides = Array.from(carousel.querySelectorAll('.article-carousel-slide'));
+      const dots = Array.from(carousel.querySelectorAll('[data-carousel-dot]'));
+      const openers = Array.from(carousel.querySelectorAll('[data-carousel-open]'));
+      const prev = carousel.querySelector('[data-carousel-prev]');
+      const next = carousel.querySelector('[data-carousel-next]');
+      const lightbox = carousel.querySelector('[data-lightbox]');
+      const lightboxImage = carousel.querySelector('[data-lightbox-image]');
+      const lightboxFrame = lightbox?.querySelector('.article-lightbox-frame');
+      const lightboxClose = carousel.querySelector('[data-lightbox-close]');
+      const lightboxPrev = carousel.querySelector('[data-lightbox-prev]');
+      const lightboxNext = carousel.querySelector('[data-lightbox-next]');
+      if (!slides.length) return;
+
+      let index = slides.findIndex((slide) => slide.classList.contains('is-active'));
+      if (index < 0) index = 0;
+
+      const render = (nextIndex) => {
+        index = (nextIndex + slides.length) % slides.length;
+        slides.forEach((slide, i) => slide.classList.toggle('is-active', i === index));
+        dots.forEach((dot, i) => {
+          const active = i === index;
+          dot.classList.toggle('is-active', active);
+          dot.setAttribute('aria-current', active ? 'true' : 'false');
+        });
+
+        if (lightbox && !lightbox.hidden) {
+          renderLightbox(index);
+        }
+      };
+
+      const renderLightbox = (nextIndex) => {
+        const current = openers[nextIndex];
+        const img = current?.querySelector('img');
+        if (!current || !img || !lightboxImage) return;
+        lightboxImage.src = current.dataset.lightboxSrc || img.currentSrc || img.src;
+        lightboxImage.alt = img.alt || '';
+        lightboxFrame?.classList.remove('is-zoomed');
+      };
+
+      const openLightbox = (nextIndex) => {
+        render(nextIndex);
+        renderLightbox(index);
+        if (!lightbox) return;
+        lightbox.hidden = false;
+        document.body.style.overflow = 'hidden';
+      };
+
+      const closeLightbox = () => {
+        if (!lightbox) return;
+        lightbox.hidden = true;
+        document.body.style.overflow = '';
+        lightboxFrame?.classList.remove('is-zoomed');
+      };
+
+      prev?.addEventListener('click', () => render(index - 1));
+      next?.addEventListener('click', () => render(index + 1));
+      dots.forEach((dot, i) => dot.addEventListener('click', () => render(i)));
+      openers.forEach((opener, i) => opener.addEventListener('click', () => openLightbox(i)));
+      lightboxClose?.addEventListener('click', closeLightbox);
+      lightboxPrev?.addEventListener('click', () => render(index - 1));
+      lightboxNext?.addEventListener('click', () => render(index + 1));
+      lightbox?.addEventListener('click', (event) => {
+        if (event.target === lightbox) closeLightbox();
+      });
+      lightboxFrame?.addEventListener('click', () => {
+        lightboxFrame.classList.toggle('is-zoomed');
+      });
+
+      document.addEventListener('keydown', (event) => {
+        if (!lightbox || lightbox.hidden) return;
+        if (event.key === 'Escape') closeLightbox();
+        if (event.key === 'ArrowLeft') render(index - 1);
+        if (event.key === 'ArrowRight') render(index + 1);
+      });
+
+      render(index);
+    });
+  </script>
 {{ end }}
 
 {{ define "main" }}
