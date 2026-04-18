@@ -1,0 +1,22 @@
+<svg width="160" height="104" viewBox="0 0 160 104" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <linearGradient id="bg" x1="8" y1="6" x2="152" y2="98" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#F5FAFB"/>
+    <stop offset="1" stop-color="#DCEEF1"/>
+  </linearGradient>
+  <linearGradient id="gauge" x1="47" y1="28" x2="113" y2="79" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#224A56"/>
+    <stop offset="1" stop-color="#3A7887"/>
+  </linearGradient>
+</defs>
+<rect x="4" y="4" width="152" height="96" rx="18" fill="url(#bg)"/>
+<path d="M48 69C48 49.67 63.67 34 83 34C102.33 34 118 49.67 118 69" stroke="url(#gauge)" stroke-width="11" stroke-linecap="round"/>
+<circle cx="83" cy="69" r="8" fill="#2B6270"/>
+<path d="M83 69L101 50" stroke="#8BC0C9" stroke-width="5" stroke-linecap="round"/>
+<circle cx="39" cy="62" r="9" fill="#A7D2D9"/>
+<circle cx="127" cy="62" r="9" fill="#A7D2D9"/>
+<circle cx="83" cy="24" r="9" fill="#6FAEBA"/>
+<path d="M46 56L75 31" stroke="#C4E1E6" stroke-width="3" stroke-linecap="round"/>
+<path d="M120 56L91 31" stroke="#C4E1E6" stroke-width="3" stroke-linecap="round"/>
+<path d="M48 79H118" stroke="#9FCBD3" stroke-width="5" stroke-linecap="round"/>
+</svg>

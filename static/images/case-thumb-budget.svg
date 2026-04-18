@@ -1,0 +1,20 @@
+<svg width="160" height="104" viewBox="0 0 160 104" fill="none" xmlns="http://www.w3.org/2000/svg">
+<defs>
+  <linearGradient id="bg" x1="10" y1="10" x2="150" y2="94" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#F7FAFB"/>
+    <stop offset="1" stop-color="#DCEEF1"/>
+  </linearGradient>
+  <linearGradient id="wallet" x1="38" y1="31" x2="122" y2="77" gradientUnits="userSpaceOnUse">
+    <stop stop-color="#295561"/>
+    <stop offset="1" stop-color="#3E7E8C"/>
+  </linearGradient>
+</defs>
+<rect x="4" y="4" width="152" height="96" rx="18" fill="url(#bg)"/>
+<rect x="34" y="34" width="92" height="42" rx="11" fill="url(#wallet)"/>
+<path d="M44 34H102C109.732 34 116 40.268 116 48V50H44V34Z" fill="#457F8D"/>
+<rect x="94" y="45" width="32" height="20" rx="8" fill="#14353E"/>
+<circle cx="108" cy="55" r="4" fill="#F6FBFB"/>
+<path d="M31 75H129" stroke="#A8CED5" stroke-width="5" stroke-linecap="round"/>
+<path d="M52 25C56 21 61 19 66 19" stroke="#7FB5C0" stroke-width="4" stroke-linecap="round"/>
+<path d="M46 19C50 15 58 12 65 12" stroke="#B7DADF" stroke-width="4" stroke-linecap="round"/>
+</svg>
