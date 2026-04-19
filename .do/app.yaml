@@ -2,9 +2,10 @@ name: drafted-web
 region: ams
 static_sites:
   - name: website
-    git:
-      repo_clone_url: https://github.com/Fulviuus/drafted-web.git
+    github:
+      repo: Fulviuus/drafted-web
       branch: main
+      deploy_on_push: true
     source_dir: /
     environment_slug: hugo
     build_command: hugo --gc --minify
