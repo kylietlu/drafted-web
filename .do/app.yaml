@@ -1,0 +1,11 @@
+name: drafted-web
+region: ams
+static_sites:
+  - name: website
+    git:
+      repo_clone_url: https://github.com/Fulviuus/drafted-web.git
+      branch: main
+    source_dir: /
+    build_command: hugo --gc --minify
+    output_dir: public
+    index_document: index.html
