@@ -1,20 +1,279 @@
+{{ define "extra_head" }}
+  <style>
+    ._9f3cc462 {
+      position: relative;
+      padding-top: 30px;
+      --paddingTop: 30px;
+      padding-bottom: 0;
+    }
+
+    ._3ebd1010 {
+      display: flex;
+      text-align: center;
+      align-items: center;
+      flex-direction: column;
+    }
+
+    ._83fcf8bc {
+      gap: 10px;
+      display: flex;
+      text-align: center;
+      align-items: center;
+      margin-bottom: 0;
+      flex-direction: column;
+    }
+
+    ._a84d198f {
+      margin: 0;
+      font: normal normal 800 68px "Noto Sans", -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
+      color: #3d4145;
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+    }
+
+    ._a84d198f p,
+    ._f72208fb p {
+      margin: 0;
+    }
+
+    ._6d86a387 {
+      position: relative;
+      padding-top: 20px;
+      --paddingTop: 20px;
+      padding-bottom: 150px;
+    }
+
+    ._729c2d65 {
+      display: flex;
+      flex-wrap: wrap;
+      text-align: left;
+      align-items: stretch;
+      flex-direction: row;
+      justify-content: space-between;
+    }
+
+    ._2c1c7caf {
+      width: calc(55% - 60px);
+      display: flex;
+      align-items: flex-start;
+      justify-content: flex-start;
+      flex-shrink: 0;
+      flex-direction: column;
+    }
+
+    ._ad9bbb8a {
+      gap: 10px;
+      display: flex;
+      text-align: left;
+      align-items: flex-start;
+      justify-content: flex-start;
+      min-height: 100%;
+      margin-bottom: 0;
+      flex-direction: column;
+    }
+
+    ._f72208fb {
+      margin: 0;
+      font: normal normal 800 68px "Noto Sans", -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
+      color: rgba(61, 65, 69, 0.52);
+      line-height: 1.1;
+      letter-spacing: -0.04em;
+    }
+
+    ._5a6ead46 {
+      margin: 0;
+      font: normal normal 400 22px "Noto Sans", -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
+      color: rgb(105, 105, 105);
+      line-height: 1.5;
+    }
+
+    ._0141a9f5 {
+      color: inherit;
+      transition: transform 0.2s ease-in-out;
+      font-weight: inherit;
+      text-decoration: none;
+    }
+
+    ._0141a9f5:hover {
+      transform: scale(1.03);
+      text-decoration: none !important;
+    }
+
+    ._df59b79b {
+      width: 45%;
+      display: flex;
+      padding: 2em;
+      color: rgb(121, 121, 121);
+      background: rgb(255, 255, 255);
+      box-shadow: 0px 10px 30px -10px rgba(0, 0, 0, 0.08);
+      box-sizing: border-box;
+      border: 1px solid rgb(224, 224, 224);
+      border-radius: 10px;
+    }
+
+    .contact-page-form {
+      width: 100%;
+    }
+
+    .contact-page-form.form--twoCol,
+    .contact-page-form.form--oneCol {
+      display: grid;
+      grid-gap: 1rem;
+      grid-template-columns: repeat(2, 1fr);
+      container-type: inline-size;
+    }
+
+    .contact-page-form .cf-field {
+      display: flex;
+      flex-direction: column;
+      flex-grow: 1;
+    }
+
+    .contact-page-form .field--twoCol,
+    .contact-page-form .ctaWrapper {
+      grid-column: span 2;
+    }
+
+    .contact-page-form .cf-field label {
+      font-weight: 500;
+      margin-bottom: 4px;
+      color: inherit;
+    }
+
+    .contact-page-form input,
+    .contact-page-form textarea {
+      display: flex;
+      width: 100%;
+      box-sizing: border-box;
+      background: transparent;
+      border-radius: 4px;
+      border: 1px solid rgb(229, 229, 229);
+      font-size: 14px;
+      color: inherit;
+      font-family: inherit;
+      line-height: 34px;
+      height: 36px;
+      outline: none;
+      padding: 0 10px;
+    }
+
+    .contact-page-form textarea {
+      line-height: 20px;
+      height: initial;
+      padding: 10px;
+      resize: vertical;
+      min-height: 110px;
+    }
+
+    .contact-page-form .form-legal {
+      display: flex;
+      flex-direction: column;
+      text-align: left;
+      font-size: 13px;
+      font-weight: 100;
+      margin: 0 0 7px 0;
+      color: inherit;
+    }
+
+    .contact-page-form .ctaWrapper {
+      position: relative;
+    }
+
+    .contact-page-form .btn {
+      width: 100%;
+    }
+
+    @container (width < 500px) {
+      .contact-page-form .cf-field {
+        grid-column: span 2;
+      }
+    }
+
+    @media (max-width: 800px) {
+      ._729c2d65 {
+        align-items: flex-start;
+        flex-direction: column;
+      }
+
+      ._2c1c7caf,
+      ._df59b79b {
+        width: 100%;
+      }
+
+      ._2c1c7caf {
+        margin-bottom: 2em;
+      }
+
+      ._ad9bbb8a {
+        min-height: 0;
+      }
+
+      ._a84d198f,
+      ._f72208fb {
+        font-size: 51px;
+      }
+
+      ._5a6ead46 {
+        font-size: 16px;
+      }
+    }
+  </style>
+{{ end }}
+
 {{ define "main" }}
-  <section class="section page-hero">
-    <div class="container narrow">
-      <h1 class="page-title">Contact us</h1>
+  <section class="_9f3cc462 theme-sub_wf76sy1ski cards-card_6lmqy9qaws buttons-btn_nob6m8rpy4">
+    <div class="container">
+      <div class="_3ebd1010">
+        <header class="_83fcf8bc" style="position:relative">
+          <h1 class="_a84d198f um-text"><p>Contact us</p></h1>
+        </header>
+      </div>
     </div>
   </section>
 
-  <section class="section">
-    <div class="container two-col">
-      <div class="prose card">
-        <h2>Don't worry, "us" is just me.</h2>
-        <p>If you've got a project in mind, a question, or just want to say hi, you can reach me at <a href="mailto:{{ .Site.Params.email }}">{{ .Site.Params.email }}</a> or use the form on the right.</p>
-        <p><strong>Mailing address:</strong><br>Gravin Juliana van Stolberglaan 31<br>Box G1900<br>2263 AB Leidschendam, The Netherlands</p>
-        <p>Feel free to send me a card. Just know this isn't a walk-in address. I work remotely and meet by appointment only.</p>
-      </div>
-      <div class="card form-card">
-        {{ partial "contact-form.html" . }}
+  <section class="_6d86a387 theme-sub_wf76sy1ski cards-card_6lmqy9qaws buttons-btn_nob6m8rpy4">
+    <div class="container">
+      <div class="_729c2d65">
+        <div class="_2c1c7caf">
+          <header class="_ad9bbb8a" style="position:relative">
+            <h2 class="_f72208fb um-text"><p><span style="color:var(--color-3dm7hhu6k3);font-size:28px">Don't worry, "us" is just me.</span></p></h2>
+            <div class="_5a6ead46 um-text">
+              <p><span style="font-size:16px">If you’ve got a project in mind, a question, or just want to say hi, you can reach me at </span><a href="mailto:{{ .Site.Params.email }}" class="_0141a9f5"><span style="font-size:16px"><strong>{{ .Site.Params.email }}</strong></span></a><span style="font-size:16px"> or use the form on the right.</span></p>
+              <p></p>
+              <p><span style="font-size:16px"><strong>Mailing address:</strong></span></p>
+              <p><span style="font-size:16px">Gravin Juliana van Stolberglaan 31</span></p>
+              <p><span style="font-size:16px">Box G1900</span></p>
+              <p><span style="font-size:16px">2263 AB Leidschendam, The Netherlands</span></p>
+              <p></p>
+              <p><span style="font-size:16px">Feel free to send me a card! Just know this isn't a walk-in address. I work remotely and meet by appointment only.</span></p>
+            </div>
+          </header>
+        </div>
+
+        <div class="_df59b79b" style="position:relative;cursor:default">
+          <form class="contact-page-form form form--twoCol" data-mailto="{{ .Site.Params.email }}" data-subject="{{ .Site.Params.contactMailtoSubject }}">
+            <div class="cf-field" data-field="text">
+              <label>Name<span style="color:darkred"> *</span></label>
+              <input type="text" name="name" placeholder="J. Doe" required>
+            </div>
+            <div class="cf-field" data-field="text">
+              <label>Company</label>
+              <input type="text" name="company" placeholder="Company Inc.">
+            </div>
+            <div class="cf-field field--twoCol" data-field="email">
+              <label>Email<span style="color:darkred"> *</span></label>
+              <input type="email" name="email" placeholder="example@mail.com" required>
+            </div>
+            <div class="cf-field field--twoCol" data-field="textarea">
+              <label>Message:<span style="color:darkred"> *</span></label>
+              <textarea name="message" placeholder="Hi Kylie! I'm reaching out because..." required></textarea>
+            </div>
+            <div class="ctaWrapper">
+              <div class="form-legal"><p>By submitting this form, I agree to be contacted and for my data to be processed according to the privacy policy.</p></div>
+              <button class="btn primary" type="submit">Submit</button>
+            </div>
+          </form>
+        </div>
       </div>
     </div>
   </section>
