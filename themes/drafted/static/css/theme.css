@@ -362,15 +362,17 @@ p {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 44px;
-  height: 44px;
-  margin-bottom: 14px;
+  width: 56px;
+  height: 56px;
+  margin-bottom: 16px;
   color: var(--text);
 }
 
-.service-icon svg {
-  width: 24px;
-  height: 24px;
+.service-icon img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
+  display: block;
 }
 
 .testimonial-grid {
@@ -437,7 +439,7 @@ p {
 }
 
 .logo-strip-section {
-  padding: 18px 0 28px;
+  padding: 18px 0 72px;
 }
 
 .logo-strip-label {
