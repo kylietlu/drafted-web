@@ -6,6 +6,7 @@ static_sites:
       repo_clone_url: https://github.com/Fulviuus/drafted-web.git
       branch: main
     source_dir: /
+    environment_slug: hugo
     build_command: hugo --gc --minify
     output_dir: public
     index_document: index.html
