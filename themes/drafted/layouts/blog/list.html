@@ -1,78 +1,39 @@
 {{ define "main" }}
-  {{ $entries := slice
-    (dict
-      "title" "Turning live events into marketing and sales content within hours"
-      "href" "/blog/turning-live-events-into-marketing-and-sales-content-within-hours/"
-      "image" "https://landen.imgix.net/blog_luONaAgzjMsSAkVr/assets/vekXaYQbQetKaNtV.png?w=1200"
-      "summary" "Company: PhotonDelta (in partnership with WeTakeFive) Focus: Event content, real-time publishing, LinkedIn amplification. Constraint: Same-day turnaround, live input, limited capacity. Live content works ..."
-    )
-    (dict
-      "title" "Fixing messaging and content structure to support brand and pipeline"
-      "href" "/blog/fixing-messaging-and-content-structure-to-support-brand-and-pipeline/"
-      "image" "https://landen.imgix.net/blog_luONaAgzjMsSAkVr/assets/WNFdpdgRVFZGpEKw.png?w=800"
-      "summary" "Company: SaaSplaza. Focus: Messaging, content strategy, rebrand support. Constraint: Strong offering, unclear positioning, inconsistent content. SaaSplaza had a strong set of offerings, but the way they we..."
-    )
-    (dict
-      "title" "Making a global campaign executable for regional teams"
-      "href" "/blog/making-a-global-campaign-executable-for-regional-teams/"
-      "image" "https://landen.imgix.net/blog_luONaAgzjMsSAkVr/assets/EhtgnUJpLfEMqrKi.jpg?w=800"
-      "summary" "Company: Global leader in smart buildings and sustainability (confidential). Focus: Global campaign strategy, regional adaptation, multi-touch framework. Constraint: High-level global ..."
-    )
-    (dict
-      "title" "Not all heroes use paid ads: Marketing when the budget hits zero"
-      "href" "/blog/not-all-heroes-use-paid-ads-marketing-when-the-budgets-frozen/"
-      "image" "https://landen.imgix.net/blog_luONaAgzjMsSAkVr/assets/uWlwQwQCkOzjzBDQ.jpg?w=800"
-      "summary" "Learn how a frozen budget, remote onboarding, and zero paid media led to one of the most creative B2B content campaigns I’ve ever worked on."
-    )
-    (dict
-      "title" "Turning partner events into meaningful pipeline moments"
-      "href" "/blog/turning-partner-events-into-meaningful-pipeline/"
-      "image" "https://landen.imgix.net/blog_luONaAgzjMsSAkVr/assets/THSBJTrTngzDaZtW.jpg?w=800"
-      "summary" "Company: Cognizant and Google Cloud (in partnership with CIONET). Focus: Partner events, senior-level engagement, experiential marketing. Constraint: Senior audience with low tolerance..."
-    )
-    (dict
-      "title" "A working website isn’t always an effective one"
-      "href" "/blog/a-working-website-isnt-always-an-effective-one/"
-      "image" "https://landen.imgix.net/blog_luONaAgzjMsSAkVr/assets/BwZZElNmtEjmIPhT.png?w=800"
-      "summary" "Company: Dokter Alex Heezen. Focus: Website optimisation, content restructuring, English translations. Constraint: Ongoing agency setup with reactive execution and reporting, but limit..."
-    )
-    (dict
-      "title" "AI isn’t a content strategy: A cautionary tale from the field"
-      "href" "/blog/ai-isnt-a-content-strategy/"
-      "image" "https://landen.imgix.net/blog_luONaAgzjMsSAkVr/assets/BCEfRoJGMNCyDqDA.jpg?w=800"
-      "summary" "Using AI for B2B thought leadership and content marketing? It might be damaging your brand more than helping. Here’s why original insight still matters and what to do instead."
-    )
-    (dict
-      "title" "When the wind keeps changing: How to build a marketing strategy that holds"
-      "href" "/blog/when-the-wind-keeps-changing-how-to-build-a-marketing-strategy-that-holds/"
-      "image" "https://landen.imgix.net/blog_luONaAgzjMsSAkVr/assets/LQwlhAzRGkyBNqyJ.jpg?w=800"
-      "summary" "Frequent strategy shifts can stall your momentum. This blog explores how to build resilient marketing foundations that hold up, even when everything else keeps changing."
-    )
-  }}
+  {{ $entries := .Pages.ByWeight }}
+  {{ if eq (len $entries) 0 }}
+    {{ $entries = .Pages.ByDate.Reverse }}
+  {{ end }}
   {{ $featured := index $entries 0 }}
   {{ $rest := after 1 $entries }}
 
   <section class="section blog-overview-section">
     <div class="container blog-grid">
-      <article class="blog-feature">
-        <div class="blog-feature-media">
-          <a href="{{ $featured.href }}"><img src="{{ $featured.image }}" alt="{{ $featured.title }}"></a>
-        </div>
-        <div class="blog-feature-copy">
-          <a href="{{ $featured.href }}"><h2>{{ $featured.title }}</h2></a>
-          <p>{{ $featured.summary }}</p>
-          <a class="text-link blog-cta" href="{{ $featured.href }}">Read More</a>
-        </div>
-      </article>
+      {{ with $featured }}
+        <article class="blog-feature">
+          {{ with .Params.image }}
+            <div class="blog-feature-media">
+              <a href="{{ $featured.RelPermalink }}"><img src="{{ . }}" alt="{{ $featured.Title }}"></a>
+            </div>
+          {{ end }}
+          <div class="blog-feature-copy">
+            <a href="{{ .RelPermalink }}"><h2>{{ .Title }}</h2></a>
+            <p>{{ with .Params.summary }}{{ . }}{{ else }}{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 160 }}{{ end }}{{ end }}</p>
+            <a class="text-link blog-cta" href="{{ .RelPermalink }}">Read More</a>
+          </div>
+        </article>
+      {{ end }}
 
       <div class="blog-list">
         {{ range $rest }}
+          {{ $page := . }}
           <article class="card blog-card">
-            <a class="blog-card-cover" href="{{ .href }}"><img src="{{ .image }}" alt="{{ .title }}"></a>
+            {{ with .Params.image }}
+              <a class="blog-card-cover" href="{{ $page.RelPermalink }}"><img src="{{ . }}" alt="{{ $page.Title }}"></a>
+            {{ end }}
             <div>
-              <a href="{{ .href }}"><h3>{{ .title }}</h3></a>
-              <p>{{ .summary }}</p>
-              <a class="text-link blog-cta" href="{{ .href }}">Read More</a>
+              <a href="{{ .RelPermalink }}"><h3>{{ .Title }}</h3></a>
+              <p>{{ with .Params.summary }}{{ . }}{{ else }}{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 140 }}{{ end }}{{ end }}</p>
+              <a class="text-link blog-cta" href="{{ .RelPermalink }}">Read More</a>
             </div>
           </article>
         {{ end }}

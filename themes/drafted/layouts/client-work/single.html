@@ -1,98 +1,78 @@
-<!DOCTYPE html>
-<html lang="en">
-  <head>
-    {{ partial "head.html" . }}
-    {{ partial "client-work-styles.html" . }}
-    <style>
-      .site-header .site-nav {
-        width: 100%;
-        justify-content: flex-start;
-      }
+{{ define "extra_head" }}
+  {{ partial "client-work-styles.html" . }}
+  <style>
+    .client-logo-strip-section {
+      padding: 18px 0 76px;
+    }
 
-      .site-header .header-cta {
-        margin-left: auto !important;
-      }
+    .client-logo-strip-header {
+      margin-bottom: 18px;
+    }
 
-      .site-header .btn,
-      .site-header .btn:hover {
-        border-radius: 10px;
-      }
+    .client-logo-strip-header ._774efa52 {
+      color: #3d4145;
+      text-align: center;
+      font-size: clamp(20px, 2.4vw, 28px);
+      font-weight: 500;
+    }
 
-      .client-logo-strip-section {
-        padding: 18px 0 76px;
-      }
+    .client-logo-strip-header ._774efa52 p {
+      margin: 0;
+    }
 
-      .client-logo-strip-header {
-        margin-bottom: 18px;
-      }
+    .client-logo-strip {
+      overflow: hidden;
+      -webkit-mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+      mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
+    }
 
-      .client-logo-strip-header ._774efa52 {
-        color: #3d4145;
-        text-align: center;
-        font-size: clamp(20px, 2.4vw, 28px);
-        font-weight: 500;
-      }
+    .client-logo-marquee {
+      display: flex;
+      width: max-content;
+      align-items: center;
+      animation: client-logo-marquee-scroll 36s linear infinite;
+    }
 
-      .client-logo-strip-header ._774efa52 p {
-        margin: 0;
-      }
+    .client-logo-strip:hover .client-logo-marquee {
+      animation-play-state: paused;
+    }
 
-      .client-logo-strip {
-        overflow: hidden;
-        -webkit-mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
-        mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
-      }
+    .client-logo-track {
+      display: flex;
+      flex-shrink: 0;
+      gap: 34px;
+      padding-right: 34px;
+      align-items: center;
+    }
 
-      .client-logo-marquee {
-        display: flex;
-        width: max-content;
-        align-items: center;
-        animation: client-logo-marquee-scroll 36s linear infinite;
-      }
+    .client-logo-track img {
+      height: 35px;
+      width: auto;
+      object-fit: contain;
+      opacity: 0.88;
+      transition: opacity 0.25s ease, transform 0.25s ease;
+    }
 
-      .client-logo-strip:hover .client-logo-marquee {
-        animation-play-state: paused;
-      }
+    .client-logo-track img:hover {
+      opacity: 1;
+      transform: translateY(-1px);
+    }
 
-      .client-logo-track {
-        display: flex;
-        flex-shrink: 0;
-        gap: 34px;
-        padding-right: 34px;
-        align-items: center;
+    @keyframes client-logo-marquee-scroll {
+      0% {
+        transform: translateX(0);
       }
+      100% {
+        transform: translateX(-50%);
+      }
+    }
+  </style>
+{{ end }}
 
-      .client-logo-track img {
-        height: 35px;
-        width: auto;
-        object-fit: contain;
-        opacity: 0.88;
-        transition: opacity 0.25s ease, transform 0.25s ease;
-      }
+{{ define "main" }}
+  {{ partial "client-work-body.html" . }}
+{{ end }}
 
-      .client-logo-track img:hover {
-        opacity: 1;
-        transform: translateY(-1px);
-      }
-
-      @keyframes client-logo-marquee-scroll {
-        0% {
-          transform: translateX(0);
-        }
-        100% {
-          transform: translateX(-50%);
-        }
-      }
-    </style>
-  </head>
-  <body>
-    {{ partial "header.html" . }}
-    <main>
-      {{ partial "client-work-body.html" . }}
-    </main>
-    {{ partial "footer.html" . }}
-    {{ partial "cookie-banner.html" . }}
-    <script src="{{ "js/theme.js" | relURL }}"></script>
-    {{ partial "client-work-scripts.html" . }}
-  </body>
-</html>
+{{ define "extra_scripts" }}
+  {{ partial "client-work-scripts.html" . }}
+{{ end }}

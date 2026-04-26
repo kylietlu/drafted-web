@@ -42,7 +42,7 @@ a {
 }
 
 a:hover {
-  text-decoration: underline;
+  text-decoration: none;
 }
 
 a:not(.btn) {
@@ -57,17 +57,22 @@ a:not(.btn):not(.social-link):not(.footer-cookie-link)::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -2px;
+  bottom: -0.18em;
   width: 100%;
-  height: 1px;
-  background: currentColor;
+  height: 0.38em;
+  border-radius: 999px;
+  background: color-mix(in srgb, var(--accent), transparent 84%);
   transform: scaleX(0);
   transform-origin: left center;
-  transition: transform 0.25s ease;
+  transition: transform 0.25s ease, opacity 0.25s ease;
+  opacity: 0;
+  z-index: -1;
 }
 
-a:not(.btn):not(.social-link):not(.footer-cookie-link):hover::after {
+a:not(.btn):not(.social-link):not(.footer-cookie-link):hover::after,
+a:not(.btn):not(.social-link):not(.footer-cookie-link):focus-visible::after {
   transform: scaleX(1);
+  opacity: 1;
 }
 
 a:not(.btn):hover {
@@ -225,10 +230,18 @@ p {
   color: var(--text);
   padding: 10px;
   font-weight: 500;
+  border-radius: 999px;
+  transition: color 0.25s ease, background 0.25s ease;
 }
 
 .site-nav a::after {
-  bottom: 6px !important;
+  display: none;
+}
+
+.site-nav a:hover,
+.site-nav a:focus-visible {
+  color: var(--accent);
+  background: color-mix(in srgb, var(--accent), transparent 91%);
 }
 
 .nav-toggle {
@@ -281,17 +294,23 @@ p {
 }
 
 .hero-gradient {
-  background: linear-gradient(90deg, #008a94 0%, #008a94 42%, #2fd3e2 48%, #7df3ff 50%, #2fd3e2 52%, #008a94 58%, #008a94 100%);
-  background-size: 200% 100%;
+  color: #008a94;
+  background: linear-gradient(90deg, #008a94 0%, #008a94 44%, #15b8c4 48%, #7df3ff 50%, #15b8c4 52%, #008a94 56%, #008a94 100%);
+  background-repeat: no-repeat;
+  background-size: 320% 100%;
+  background-position: 100% 50%;
   -webkit-background-clip: text;
   background-clip: text;
-  color: transparent;
-  animation: hero-gradient-shift 7s linear infinite;
+  -webkit-text-fill-color: transparent;
+  animation: hero-gradient-shift 5s linear infinite;
 }
 
 @keyframes hero-gradient-shift {
   0% {
-    background-position: 200% 50%;
+    background-position: 100% 50%;
+  }
+  24% {
+    background-position: 0% 50%;
   }
   100% {
     background-position: 0% 50%;
@@ -882,6 +901,17 @@ p {
 ._7d179ab3 {
   color: var(--muted);
   padding: 10px 0;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+._7d179ab3::after {
+  display: none;
+}
+
+._7d179ab3:hover,
+._7d179ab3:focus-visible {
+  color: var(--accent);
+  transform: translateX(3px);
 }
 
 .cookie-banner {

@@ -8,8 +8,22 @@
 
     <nav id="site-nav" class="site-nav">
       <ul>
+        {{ $currentPath := .RelPermalink }}
         {{ range .Site.Menus.main }}
-          <li><a href="{{ .URL | relURL }}">{{ .Name }}</a></li>
+          {{ $url := .URL | relURL }}
+          {{ $menuPath := replaceRE "#.*$" "" $url }}
+          {{ $hasHash := in $url "#" }}
+          {{ $isActive := false }}
+          {{ if not $hasHash }}
+            {{ if eq $menuPath "/" }}
+              {{ $isActive = $.IsHome }}
+            {{ else }}
+              {{ $isActive = hasPrefix $currentPath $menuPath }}
+            {{ end }}
+          {{ end }}
+          <li>
+            <a href="{{ .URL | relURL }}"{{ if $isActive }} class="is-active" aria-current="page"{{ end }}>{{ .Name }}</a>
+          </li>
         {{ end }}
       </ul>
       <a class="btn primary header-cta" href="{{ "/client-work/" | relURL }}">View portfolio</a>
