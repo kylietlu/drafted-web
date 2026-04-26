@@ -1,17 +1,13 @@
 {{ define "main" }}
-  <section class="section page-hero">
-    <div class="container narrow center">
-      <p class="eyebrow">Quarterly newsletter</p>
-      <h1 class="page-title">The Edit by <span class="accent">Drafted.</span></h1>
-      <p class="page-intro">"Meh" marketing is out. Sign up to receive my quarterly newsletter on B2B content and strategy. No spam, just tips to make your marketing work.</p>
-    </div>
-  </section>
-
-  <section class="section">
-    <div class="container narrow">
-      <div class="card form-card">
-        {{ partial "newsletter-form.html" . }}
-      </div>
+  <section class="newsletter-page">
+    <div class="newsletter-inner">
+      <h1 class="newsletter-title">
+        The Edit
+        <span class="newsletter-byline">by <span class="accent">Drafted.</span></span>
+      </h1>
+      <p class="newsletter-kicker">"Meh" marketing is out.</p>
+      <p class="newsletter-copy">Sign up to receive my quarterly newsletter on B2B content and strategy.<br>No spam, just tips to make your marketing work.</p>
+      {{ partial "newsletter-form.html" . }}
     </div>
   </section>
 {{ end }}
