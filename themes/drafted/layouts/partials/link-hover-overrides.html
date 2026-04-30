@@ -12,8 +12,22 @@
     text-decoration: none !important;
   }
 
+  .blog-title-link,
+  .blog-title-link:hover,
+  .blog-title-link:focus-visible {
+    text-decoration: none !important;
+  }
+
+  .blog-cta,
+  .blog-cta:hover,
+  .blog-cta:focus-visible {
+    text-decoration: underline !important;
+  }
+
   .site-header a::after,
-  .site-footer a::after {
+  .site-footer a::after,
+  .blog-title-link::after,
+  .blog-cta::after {
     display: none !important;
     content: none !important;
   }
@@ -55,6 +69,11 @@
 
   .site-footer .social-link {
     transition: color 0.22s ease, transform 0.22s ease;
+  }
+
+  .site-footer ._f7277ae9,
+  .site-footer ._f7277ae9 p {
+    font-weight: 700 !important;
   }
 
   .site-footer .social-link:hover,

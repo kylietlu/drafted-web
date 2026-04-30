@@ -1,6 +1,7 @@
 +++
 title = "Legal mumbo jumbo"
 description = "Summarizing all the legal stuff: privacy, cookies, disclaimers, the works."
+layout = "legal"
 +++
 
 Let's keep this simple. Below is all the legal stuff I'm supposed to tell you: cookies, privacy, disclaimers, the works. If you have questions or need clarification, email me at [draftedbykylie@gmail.com](mailto:draftedbykylie@gmail.com).

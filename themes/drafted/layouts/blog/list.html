@@ -12,13 +12,23 @@
         <article class="blog-feature">
           {{ with .Params.image }}
             <div class="blog-feature-media">
-              <a href="{{ $featured.RelPermalink }}"><img src="{{ . }}" alt="{{ $featured.Title }}"></a>
+              <img src="{{ . }}" alt="{{ $featured.Title }}">
             </div>
           {{ end }}
           <div class="blog-feature-copy">
-            <a href="{{ .RelPermalink }}"><h2>{{ .Title }}</h2></a>
-            <p>{{ with .Params.summary }}{{ . }}{{ else }}{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 160 }}{{ end }}{{ end }}</p>
-            <a class="text-link blog-cta" href="{{ .RelPermalink }}">Read More</a>
+            <a class="blog-title-link" href="{{ .RelPermalink }}"><h2>{{ .Title }}</h2></a>
+            {{ $summaryRaw := .RawContent }}
+            {{ if and (in $summaryRaw "Company") (in $summaryRaw "Constraint") }}
+              {{ $summaryRaw = replaceRE `(?s)^.*?</p>\s*<p[^>]*>(.*?)</p>.*$` "$1" $summaryRaw }}
+            {{ else }}
+              {{ $summaryRaw = replaceRE `(?s)^.*?<p[^>]*>(.*?)</p>.*$` "$1" $summaryRaw }}
+            {{ end }}
+            {{ $summary := trim ($summaryRaw | plainify | htmlUnescape) " \n\t" }}
+            {{ if gt (len $summary) 170 }}
+              {{ $summary = printf "%s..." (trim (substr $summary 0 167) " \n\t") }}
+            {{ end }}
+            <p>{{ $summary }}</p>
+            <a class="text-link blog-cta" href="{{ .RelPermalink }}">Read more</a>
           </div>
         </article>
       {{ end }}
@@ -28,12 +38,22 @@
           {{ $page := . }}
           <article class="card blog-card">
             {{ with .Params.image }}
-              <a class="blog-card-cover" href="{{ $page.RelPermalink }}"><img src="{{ . }}" alt="{{ $page.Title }}"></a>
+              <div class="blog-card-cover"><img src="{{ . }}" alt="{{ $page.Title }}"></div>
             {{ end }}
             <div>
-              <a href="{{ .RelPermalink }}"><h3>{{ .Title }}</h3></a>
-              <p>{{ with .Params.summary }}{{ . }}{{ else }}{{ with .Description }}{{ . }}{{ else }}{{ .Summary | plainify | truncate 140 }}{{ end }}{{ end }}</p>
-              <a class="text-link blog-cta" href="{{ .RelPermalink }}">Read More</a>
+              <a class="blog-title-link" href="{{ .RelPermalink }}"><h3>{{ .Title }}</h3></a>
+              {{ $summaryRaw := .RawContent }}
+              {{ if and (in $summaryRaw "Company") (in $summaryRaw "Constraint") }}
+                {{ $summaryRaw = replaceRE `(?s)^.*?</p>\s*<p[^>]*>(.*?)</p>.*$` "$1" $summaryRaw }}
+              {{ else }}
+                {{ $summaryRaw = replaceRE `(?s)^.*?<p[^>]*>(.*?)</p>.*$` "$1" $summaryRaw }}
+              {{ end }}
+              {{ $summary := trim ($summaryRaw | plainify | htmlUnescape) " \n\t" }}
+              {{ if gt (len $summary) 140 }}
+                {{ $summary = printf "%s..." (trim (substr $summary 0 137) " \n\t") }}
+              {{ end }}
+              <p>{{ $summary }}</p>
+              <a class="text-link blog-cta" href="{{ .RelPermalink }}">Read more</a>
             </div>
           </article>
         {{ end }}

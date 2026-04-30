@@ -14,7 +14,11 @@
           {{ $menuPath := replaceRE "#.*$" "" $url }}
           {{ $hasHash := in $url "#" }}
           {{ $isActive := false }}
-          {{ if not $hasHash }}
+          {{ if $hasHash }}
+            {{ if ne $menuPath "/" }}
+              {{ $isActive = hasPrefix $currentPath $menuPath }}
+            {{ end }}
+          {{ else }}
             {{ if eq $menuPath "/" }}
               {{ $isActive = $.IsHome }}
             {{ else }}

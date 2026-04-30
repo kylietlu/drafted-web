@@ -369,9 +369,7 @@ p {
 
 .case-card:hover,
 .stat-card:hover,
-.portfolio-card:hover,
-.blog-card:hover,
-.blog-feature:hover {
+.portfolio-card:hover {
   transform: translateY(-4px);
   box-shadow: 0 20px 40px -24px rgba(0, 0, 0, 0.16);
   border-color: rgba(0, 138, 148, 0.22);
@@ -685,8 +683,21 @@ p {
   align-items: start;
 }
 
-.blog-feature a {
+.blog-title-link {
   color: var(--text);
+  text-decoration: none;
+}
+
+.blog-title-link:hover,
+.blog-title-link:focus-visible {
+  color: var(--accent);
+  text-decoration: none;
+}
+
+.blog-title-link h2,
+.blog-title-link h3 {
+  color: inherit;
+  transition: color 0.22s ease;
 }
 
 .blog-feature-media img {
@@ -695,11 +706,6 @@ p {
   aspect-ratio: 16 / 10;
   object-fit: cover;
   border-radius: var(--radius);
-  transition: transform 0.55s ease;
-}
-
-.blog-feature:hover .blog-feature-media img {
-  transform: scale(1.04);
 }
 
 .blog-feature-copy {
@@ -741,11 +747,6 @@ p {
   aspect-ratio: 4 / 3;
   object-fit: cover;
   width: 100%;
-  transition: transform 0.55s ease;
-}
-
-.blog-card:hover img {
-  transform: scale(1.05);
 }
 
 .blog-card h3 {
@@ -767,6 +768,16 @@ p {
   align-items: center;
   gap: 5px;
   color: var(--text);
+  text-decoration: underline;
+  text-underline-offset: 0.18em;
+  text-decoration-thickness: 1px;
+  transition: color 0.22s ease;
+}
+
+.blog-cta:hover,
+.blog-cta:focus-visible {
+  color: var(--accent);
+  text-decoration: underline;
 }
 
 .article-shell {
@@ -801,7 +812,7 @@ p {
   position: relative;
   display: flex;
   padding: 30px 0 60px;
-  border-top: 1px solid var(--border);
+  border-top: 1px solid var(--color-border-normal, var(--border)) !important;
 }
 
 .site-footer .wr {
@@ -935,6 +946,14 @@ p {
 
 .cookie-banner[hidden] {
   display: none !important;
+}
+
+.footer-cookie-link {
+  border: 0;
+  background: transparent;
+  font: inherit;
+  cursor: pointer;
+  text-align: left;
 }
 
 .cookie-banner,
@@ -1080,15 +1099,16 @@ p {
   margin: 0;
   color: var(--text);
   font-size: clamp(54px, 7vw, 68px);
-  line-height: 1.08;
-  letter-spacing: -0.055em;
+  line-height: 1.1;
+  letter-spacing: normal;
   font-weight: 800;
 }
 
 .newsletter-title .newsletter-byline {
   display: block;
   font-size: clamp(42px, 5.6vw, 56px);
-  letter-spacing: -0.055em;
+  line-height: 1.1;
+  letter-spacing: normal;
 }
 
 .newsletter-title .accent {

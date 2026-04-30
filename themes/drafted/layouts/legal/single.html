@@ -1,0 +1,74 @@
+{{ define "extra_head" }}
+  <style>
+    .legal-page {
+      position: relative;
+      padding: 50px 0;
+    }
+
+    .legal-page .wr {
+      width: min(var(--container), calc(100% - 32px));
+      margin: 0 auto;
+      padding: 0;
+    }
+
+    .legal-header {
+      gap: 10px;
+      display: flex;
+      text-align: left;
+      align-items: flex-start;
+      margin-bottom: 20px;
+      flex-direction: column;
+    }
+
+    .legal-title {
+      margin: 0;
+      max-width: min(100%, 420px);
+      color: var(--text);
+      font-size: 40px;
+      line-height: 1.2;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+    }
+
+    .legal-content {
+      max-width: 980px;
+      color: var(--muted);
+      font-size: max(17px, 1rem);
+      line-height: 1.6;
+    }
+
+    .legal-content p {
+      margin: 0 0 1rem;
+    }
+
+    .legal-content h2 {
+      margin: 1.6rem 0 1rem;
+      color: var(--text);
+      font-size: 24px;
+      line-height: 1.3;
+      font-weight: 600;
+    }
+
+    .legal-content strong {
+      color: var(--text);
+      font-weight: 600;
+    }
+
+    .legal-content a {
+      color: var(--accent);
+    }
+  </style>
+{{ end }}
+
+{{ define "main" }}
+  <section class="legal-page theme-sub_wf76sy1ski cards-card_6lmqy9qaws buttons-btn_nob6m8rpy4">
+    <div class="wr">
+      <header class="legal-header">
+        <h1 class="legal-title"><strong>{{ .Title }}</strong></h1>
+      </header>
+      <div class="legal-content">
+        {{ .Content }}
+      </div>
+    </div>
+  </section>
+{{ end }}
