@@ -379,8 +379,8 @@ p {
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  width: 56px;
-  height: 56px;
+  width: 64px;
+  height: 64px;
   margin-bottom: 16px;
   color: var(--text);
 }
@@ -477,11 +477,8 @@ p {
   display: flex;
   width: max-content;
   align-items: center;
-  animation: logo-marquee-scroll 36s linear infinite;
-}
-
-.logo-strip:hover .logo-marquee {
-  animation-play-state: paused;
+  animation: logo-marquee-scroll 24s linear infinite;
+  will-change: transform;
 }
 
 .logo-track {
@@ -510,7 +507,7 @@ p {
     transform: translateX(0);
   }
   100% {
-    transform: translateX(calc(-50% - 17px));
+    transform: translateX(-50%);
   }
 }
 

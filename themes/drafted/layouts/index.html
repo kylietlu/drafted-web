@@ -26,42 +26,42 @@
       <div class="service-grid">
         <article class="card service-card">
           <div class="service-icon" aria-hidden="true">
-            <img src="{{ "/images/home-services/strategy-growth.png" | relURL }}" alt="">
+            <img src="{{ "/images/home-services/strategy-growth.svg" | relURL }}" alt="">
           </div>
           <h3>turn your content strategy into a growth engine</h3>
           <p>by creating a clear, goal-oriented content plan that connects with your audience and supports your business growth.</p>
         </article>
         <article class="card service-card">
           <div class="service-icon" aria-hidden="true">
-            <img src="{{ "/images/home-services/reach-right-people.png" | relURL }}" alt="">
+            <img src="{{ "/images/home-services/reach-right-people.svg" | relURL }}" alt="">
           </div>
           <h3>reach more of the right people, faster</h3>
           <p>by using data and insights to fine-tune your messaging, improve performance, and get the most out of your marketing efforts.</p>
         </article>
         <article class="card service-card">
           <div class="service-icon" aria-hidden="true">
-            <img src="{{ "/images/home-services/sound-like-a-pro.png" | relURL }}" alt="">
+            <img src="{{ "/images/home-services/sound-like-a-pro.svg" | relURL }}" alt="">
           </div>
           <h3>sound like a pro</h3>
           <p>by transforming your ideas into sharp, engaging content that sounds like you (just better). Think: ghostwriting, blog writing, or polishing messy drafts.</p>
         </article>
         <article class="card service-card">
           <div class="service-icon" aria-hidden="true">
-            <img src="{{ "/images/home-services/say-it-like-a-native.png" | relURL }}" alt="">
+            <img src="{{ "/images/home-services/say-it-like-a-native.svg" | relURL }}" alt="">
           </div>
           <h3>say it like a native (even if you're not)</h3>
           <p>by translating your Dutch content into fluent, natural English. Say goodbye to <em>steenkolenengels</em> and stiff translations!</p>
         </article>
         <article class="card service-card">
           <div class="service-icon" aria-hidden="true">
-            <img src="{{ "/images/home-services/refine-ai-output.png" | relURL }}" alt="">
+            <img src="{{ "/images/home-services/refine-ai-output.svg" | relURL }}" alt="">
           </div>
           <h3>avoid the "robotic" feel of raw AI output</h3>
           <p>by refining your AI-assisted drafts and outlines to produce final content that’s authentic, credible, and consistent with your brand.</p>
         </article>
         <article class="card service-card">
           <div class="service-icon" aria-hidden="true">
-            <img src="{{ "/images/home-services/stay-on-track.png" | relURL }}" alt="">
+            <img src="{{ "/images/home-services/stay-on-track.svg" | relURL }}" alt="">
           </div>
           <h3>stay on track when things get busy</h3>
           <p>by jumping in to keep things moving. I support launches, campaigns, and content with dependable, hands-on help. Ready when you are!</p>
@@ -71,35 +71,5 @@
   </section>
 
 
-  <section class="section logo-strip-section">
-    <div class="container">
-      <p class="logo-strip-label">Working with teams across B2B tech and innovation ecosystems:</p>
-      <div class="logo-strip">
-        <div class="logo-marquee">
-          <div class="logo-track">
-            <img src="{{ "/images/logos/intwo.png" | relURL }}" alt="InTWO">
-            <img src="{{ "/images/logos/cognizant.png" | relURL }}" alt="Cognizant">
-            <img src="{{ "/images/logos/crystalloids.webp" | relURL }}" alt="Crystalloids">
-            <img src="{{ "/images/logos/esa-bic.png" | relURL }}" alt="ESA BIC">
-            <img src="{{ "/images/logos/microsoft.png" | relURL }}" alt="Microsoft">
-            <img src="{{ "/images/logos/aws.png" | relURL }}" alt="AWS">
-            <img src="{{ "/images/logos/google-cloud.png" | relURL }}" alt="Google Cloud">
-            <img src="{{ "/images/logos/pho-delta.webp" | relURL }}" alt="PhotonDelta">
-            <img src="{{ "/images/logos/cionet.png" | relURL }}" alt="CIONET">
-          </div>
-          <div class="logo-track" aria-hidden="true">
-            <img src="{{ "/images/logos/intwo.png" | relURL }}" alt="">
-            <img src="{{ "/images/logos/cognizant.png" | relURL }}" alt="">
-            <img src="{{ "/images/logos/crystalloids.webp" | relURL }}" alt="">
-            <img src="{{ "/images/logos/esa-bic.png" | relURL }}" alt="">
-            <img src="{{ "/images/logos/microsoft.png" | relURL }}" alt="">
-            <img src="{{ "/images/logos/aws.png" | relURL }}" alt="">
-            <img src="{{ "/images/logos/google-cloud.png" | relURL }}" alt="">
-            <img src="{{ "/images/logos/pho-delta.webp" | relURL }}" alt="">
-            <img src="{{ "/images/logos/cionet.png" | relURL }}" alt="">
-          </div>
-        </div>
-      </div>
-    </div>
-  </section>
+  {{ partial "logo-strip.html" (dict "label" "Working with teams across B2B tech and innovation ecosystems:") }}
 {{ end }}

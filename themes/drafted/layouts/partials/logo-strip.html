@@ -1,0 +1,33 @@
+{{ $label := default "Working with teams across B2B tech and innovation ecosystems:" .label }}
+{{ $sectionClass := default "section logo-strip-section" .sectionClass }}
+{{ $wrapClass := default "container" .wrapClass }}
+{{ $logos := slice
+  (dict "src" "/images/logos/intwo.png" "alt" "InTWO")
+  (dict "src" "/images/logos/cognizant.png" "alt" "Cognizant")
+  (dict "src" "/images/logos/crystalloids.webp" "alt" "Crystalloids")
+  (dict "src" "/images/logos/esa-bic.png" "alt" "ESA BIC")
+  (dict "src" "/images/logos/microsoft.png" "alt" "Microsoft")
+  (dict "src" "/images/logos/aws.png" "alt" "AWS")
+  (dict "src" "/images/logos/google-cloud.png" "alt" "Google Cloud")
+  (dict "src" "/images/logos/pho-delta.webp" "alt" "PhotonDelta")
+  (dict "src" "/images/logos/cionet.png" "alt" "CIONET")
+}}
+<section class="{{ $sectionClass }}">
+  <div class="{{ $wrapClass }}">
+    <p class="logo-strip-label">{{ $label }}</p>
+    <div class="logo-strip" aria-label="Client logos">
+      <div class="logo-marquee">
+        <div class="logo-track">
+          {{ range $logos }}
+            <img src="{{ .src | relURL }}" alt="{{ .alt }}">
+          {{ end }}
+        </div>
+        <div class="logo-track" aria-hidden="true">
+          {{ range $logos }}
+            <img src="{{ .src | relURL }}" alt="">
+          {{ end }}
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

@@ -28,7 +28,7 @@
       font: normal normal 800 68px "Noto Sans", -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
       color: #3d4145;
       line-height: 1.1;
-      letter-spacing: -0.04em;
+      letter-spacing: normal;
     }
 
     ._a84d198f p,
@@ -75,9 +75,9 @@
     ._f72208fb {
       margin: 0;
       font: normal normal 800 68px "Noto Sans", -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif;
-      color: rgba(61, 65, 69, 0.52);
+      color: #3d4145;
       line-height: 1.1;
-      letter-spacing: -0.04em;
+      letter-spacing: normal;
     }
 
     ._5a6ead46 {
@@ -88,14 +88,19 @@
     }
 
     ._0141a9f5 {
-      color: inherit;
-      transition: transform 0.2s ease-in-out;
+      color: #008a94;
       font-weight: inherit;
       text-decoration: none;
     }
 
-    ._0141a9f5:hover {
-      transform: scale(1.03);
+    ._0141a9f5 span,
+    ._0141a9f5 strong {
+      color: inherit !important;
+    }
+
+    ._0141a9f5:hover,
+    ._0141a9f5:focus-visible {
+      color: #008a94;
       text-decoration: none !important;
     }
 
@@ -236,14 +241,12 @@
       <div class="_729c2d65">
         <div class="_2c1c7caf">
           <header class="_ad9bbb8a" style="position:relative">
-            <h2 class="_f72208fb um-text"><p><span style="color:var(--color-3dm7hhu6k3);font-size:28px">Don't worry, "us" is just me.</span></p></h2>
+            <h2 class="_f72208fb um-text"><p><span style="color:rgba(0, 0, 0, 0.47);font-size:28px">Don't worry, "us" is just me.</span></p></h2>
             <div class="_5a6ead46 um-text">
               <p><span style="font-size:16px">If you’ve got a project in mind, a question, or just want to say hi, you can reach me at </span><a href="mailto:{{ .Site.Params.email }}" class="_0141a9f5"><span style="font-size:16px"><strong>{{ .Site.Params.email }}</strong></span></a><span style="font-size:16px"> or use the form on the right.</span></p>
               <p></p>
               <p><span style="font-size:16px"><strong>Mailing address:</strong></span></p>
-              <p><span style="font-size:16px">Gravin Juliana van Stolberglaan 31</span></p>
-              <p><span style="font-size:16px">Box G1900</span></p>
-              <p><span style="font-size:16px">2263 AB Leidschendam, The Netherlands</span></p>
+              <p><span style="font-size:16px">Gravin Juliana van Stolberglaan 31, Box G1900, 2263 AB Leidschendam, The Netherlands</span></p>
               <p></p>
               <p><span style="font-size:16px">Feel free to send me a card! Just know this isn't a walk-in address. I work remotely and meet by appointment only.</span></p>
             </div>
