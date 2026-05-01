@@ -22,7 +22,7 @@ If you fill out a form, send me a message, or browse this site, some personal da
 Use it to reply, understand how people are using my site, and occasionally look at analytics.
 
 **Who sees it:**  
-Me, my cat Nyxie, and maybe a few tools I use like Umso (my site builder) and Google Analytics. Google only sees anonymized data (no names or emails), and only to help me understand how people use the site. Nothing sketchy, pinky promise.
+Me, my cat Nyxie, and maybe a few tools I use like Google Analytics.
 
 **Your rights:**  
 If you're in the EU, that means you can ask to see, fix, or delete your data anytime.

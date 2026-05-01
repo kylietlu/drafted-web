@@ -18,6 +18,45 @@ const updateHeaderState = () => {
 updateHeaderState();
 window.addEventListener("scroll", updateHeaderState, { passive: true });
 
+const updateActiveNavLink = () => {
+  if (!siteNav) return;
+
+  const links = Array.from(siteNav.querySelectorAll("a:not(.header-cta)"));
+  const currentPath = window.location.pathname.replace(/\/$/, "") || "/";
+  const currentHash = window.location.hash;
+
+  let activeLink = null;
+
+  if (currentHash) {
+    activeLink = links.find((link) => {
+      const url = new URL(link.getAttribute("href"), window.location.origin);
+      const linkPath = url.pathname.replace(/\/$/, "") || "/";
+      return linkPath === currentPath && url.hash === currentHash;
+    });
+  }
+
+  if (!activeLink) {
+    activeLink = links.find((link) => {
+      const url = new URL(link.getAttribute("href"), window.location.origin);
+      const linkPath = url.pathname.replace(/\/$/, "") || "/";
+      return linkPath === currentPath && !url.hash;
+    });
+  }
+
+  links.forEach((link) => {
+    const isActive = link === activeLink;
+    link.classList.toggle("is-active", isActive);
+    if (isActive) {
+      link.setAttribute("aria-current", "page");
+    } else {
+      link.removeAttribute("aria-current");
+    }
+  });
+};
+
+updateActiveNavLink();
+window.addEventListener("hashchange", updateActiveNavLink);
+
 for (const form of document.querySelectorAll("form[data-mailto]")) {
   form.addEventListener("submit", (event) => {
     event.preventDefault();
@@ -34,32 +73,54 @@ for (const form of document.querySelectorAll("form[data-mailto]")) {
 }
 
 const cookieBanner = document.querySelector(".cookie-banner");
-const cookieSettingsLink = document.querySelector(".footer-cookie-link");
+const cookieSettingsLinks = document.querySelectorAll(".footer-cookie-link");
 
 if (cookieBanner) {
   const key = "drafted-cookie-preference";
-  const existing = window.localStorage.getItem(key);
-
-  if (!existing) {
+  const getPreference = () => {
+    try {
+      return window.localStorage.getItem(key);
+    } catch {
+      return null;
+    }
+  };
+  const setPreference = (value) => {
+    try {
+      window.localStorage.setItem(key, value);
+    } catch {
+      // Ignore storage failures; the banner should still be usable.
+    }
+  };
+  const showCookieBanner = () => {
     cookieBanner.hidden = false;
+    cookieBanner.removeAttribute("hidden");
+  };
+  const hideCookieBanner = () => {
+    cookieBanner.hidden = true;
+    cookieBanner.setAttribute("hidden", "");
+  };
+
+  if (!getPreference()) {
+    showCookieBanner();
   }
 
   cookieBanner.querySelector(".cookie-accept")?.addEventListener("click", () => {
-    window.localStorage.setItem(key, "accepted");
-    cookieBanner.hidden = true;
+    setPreference("accepted");
+    hideCookieBanner();
   });
 
   cookieBanner.querySelector(".cookie-reject")?.addEventListener("click", () => {
-    window.localStorage.setItem(key, "rejected");
-    cookieBanner.hidden = true;
+    setPreference("rejected");
+    hideCookieBanner();
   });
 
-  cookieBanner.querySelector(".cookie-settings")?.addEventListener("click", () => {
-    cookieBanner.hidden = false;
-  });
+  cookieBanner.querySelector(".cookie-settings")?.addEventListener("click", showCookieBanner);
 
-  cookieSettingsLink?.addEventListener("click", () => {
-    cookieBanner.hidden = false;
+  cookieSettingsLinks.forEach((link) => {
+    link.addEventListener("click", (event) => {
+      event.preventDefault();
+      showCookieBanner();
+    });
   });
 }
 
@@ -72,7 +133,8 @@ if (prefersReducedMotion) {
 } else {
   revealTargets.forEach((element, index) => {
     element.classList.add("reveal");
-    element.style.setProperty("--reveal-delay", `${Math.min(index % 6, 5) * 70}ms`);
+    const revealDelay = element.matches(".blog-card, .blog-feature") ? 0 : Math.min(index % 6, 5) * 70;
+    element.style.setProperty("--reveal-delay", `${revealDelay}ms`);
   });
 
   const revealObserver = new IntersectionObserver(

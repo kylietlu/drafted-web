@@ -90,7 +90,16 @@
     ._0141a9f5 {
       color: #008a94;
       font-weight: inherit;
-      text-decoration: none;
+      text-decoration: none !important;
+      background: none !important;
+      box-shadow: none !important;
+      text-shadow: none !important;
+    }
+
+    ._0141a9f5::before,
+    ._0141a9f5::after {
+      display: none !important;
+      content: none !important;
     }
 
     ._0141a9f5 span,
@@ -101,7 +110,10 @@
     ._0141a9f5:hover,
     ._0141a9f5:focus-visible {
       color: #008a94;
-      text-decoration: none !important;
+      text-decoration: underline !important;
+      background: none !important;
+      box-shadow: none !important;
+      transform: none !important;
     }
 
     ._df59b79b {
@@ -246,7 +258,7 @@
               <p><span style="font-size:16px">If you’ve got a project in mind, a question, or just want to say hi, you can reach me at </span><a href="mailto:{{ .Site.Params.email }}" class="_0141a9f5"><span style="font-size:16px"><strong>{{ .Site.Params.email }}</strong></span></a><span style="font-size:16px"> or use the form on the right.</span></p>
               <p></p>
               <p><span style="font-size:16px"><strong>Mailing address:</strong></span></p>
-              <p><span style="font-size:16px">Gravin Juliana van Stolberglaan 31, Box G1900, 2263 AB Leidschendam, The Netherlands</span></p>
+              <p><span style="font-size:16px">Gravin Juliana van Stolberglaan 31<br>Box G1900<br>2263 AB Leidschendam, The Netherlands</span></p>
               <p></p>
               <p><span style="font-size:16px">Feel free to send me a card! Just know this isn't a walk-in address. I work remotely and meet by appointment only.</span></p>
             </div>

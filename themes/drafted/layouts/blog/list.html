@@ -18,12 +18,17 @@
           <div class="blog-feature-copy">
             <a class="blog-title-link" href="{{ .RelPermalink }}"><h2>{{ .Title }}</h2></a>
             {{ $summaryRaw := .RawContent }}
-            {{ if and (in $summaryRaw "Company") (in $summaryRaw "Constraint") }}
-              {{ $summaryRaw = replaceRE `(?s)^.*?</p>\s*<p[^>]*>(.*?)</p>.*$` "$1" $summaryRaw }}
+            {{ $summary := "" }}
+            {{ with .Params.summary }}
+              {{ $summary = . }}
             {{ else }}
-              {{ $summaryRaw = replaceRE `(?s)^.*?<p[^>]*>(.*?)</p>.*$` "$1" $summaryRaw }}
+              {{ if and (in $summaryRaw "Company") (in $summaryRaw "Constraint") }}
+                {{ $summaryRaw = replaceRE `(?s)^.*?</p>\s*<p[^>]*>(.*?)</p>.*$` "$1" $summaryRaw }}
+              {{ else }}
+                {{ $summaryRaw = replaceRE `(?s)^.*?<p[^>]*>(.*?)</p>.*$` "$1" $summaryRaw }}
+              {{ end }}
+              {{ $summary = trim ($summaryRaw | plainify | htmlUnescape) " \n\t" }}
             {{ end }}
-            {{ $summary := trim ($summaryRaw | plainify | htmlUnescape) " \n\t" }}
             {{ if gt (len $summary) 170 }}
               {{ $summary = printf "%s..." (trim (substr $summary 0 167) " \n\t") }}
             {{ end }}
@@ -43,12 +48,17 @@
             <div>
               <a class="blog-title-link" href="{{ .RelPermalink }}"><h3>{{ .Title }}</h3></a>
               {{ $summaryRaw := .RawContent }}
-              {{ if and (in $summaryRaw "Company") (in $summaryRaw "Constraint") }}
-                {{ $summaryRaw = replaceRE `(?s)^.*?</p>\s*<p[^>]*>(.*?)</p>.*$` "$1" $summaryRaw }}
+              {{ $summary := "" }}
+              {{ with .Params.summary }}
+                {{ $summary = . }}
               {{ else }}
-                {{ $summaryRaw = replaceRE `(?s)^.*?<p[^>]*>(.*?)</p>.*$` "$1" $summaryRaw }}
+                {{ if and (in $summaryRaw "Company") (in $summaryRaw "Constraint") }}
+                  {{ $summaryRaw = replaceRE `(?s)^.*?</p>\s*<p[^>]*>(.*?)</p>.*$` "$1" $summaryRaw }}
+                {{ else }}
+                  {{ $summaryRaw = replaceRE `(?s)^.*?<p[^>]*>(.*?)</p>.*$` "$1" $summaryRaw }}
+                {{ end }}
+                {{ $summary = trim ($summaryRaw | plainify | htmlUnescape) " \n\t" }}
               {{ end }}
-              {{ $summary := trim ($summaryRaw | plainify | htmlUnescape) " \n\t" }}
               {{ if gt (len $summary) 140 }}
                 {{ $summary = printf "%s..." (trim (substr $summary 0 137) " \n\t") }}
               {{ end }}

@@ -481,6 +481,11 @@ p {
   will-change: transform;
 }
 
+.logo-strip:hover .logo-marquee,
+.logo-strip:focus-within .logo-marquee {
+  animation-play-state: paused;
+}
+
 .logo-track {
   display: flex;
   flex-shrink: 0;
@@ -494,12 +499,11 @@ p {
   width: auto;
   object-fit: contain;
   opacity: 0.88;
-  transition: opacity 0.25s ease, transform 0.25s ease;
+  transition: opacity 0.25s ease;
 }
 
 .logo-track img:hover {
-  opacity: 1;
-  transform: translateY(-1px);
+  opacity: 0.88;
 }
 
 @keyframes logo-marquee-scroll {
@@ -946,11 +950,22 @@ p {
 }
 
 .footer-cookie-link {
+  display: inline-flex;
+  padding: 0;
   border: 0;
   background: transparent;
+  color: var(--muted);
   font: inherit;
+  font-size: 0.9em;
   cursor: pointer;
   text-align: left;
+  transition: color 0.25s ease, transform 0.25s ease;
+}
+
+.footer-cookie-link:hover,
+.footer-cookie-link:focus-visible {
+  color: var(--accent);
+  transform: translateX(3px);
 }
 
 .cookie-banner,

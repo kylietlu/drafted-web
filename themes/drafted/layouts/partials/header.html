@@ -26,7 +26,7 @@
             {{ end }}
           {{ end }}
           <li>
-            <a href="{{ .URL | relURL }}"{{ if $isActive }} class="is-active" aria-current="page"{{ end }}>{{ .Name }}</a>
+            <a href="{{ .URL | relURL }}"{{ if $hasHash }} data-nav-hash="{{ replaceRE "^.*#" "" .URL }}"{{ end }}{{ if $isActive }} class="is-active" aria-current="page"{{ end }}>{{ .Name }}</a>
           </li>
         {{ end }}
       </ul>
