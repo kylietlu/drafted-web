@@ -183,8 +183,8 @@ if (cookieBanner || cookieModal) {
       return false;
     }
   };
-  const saveCookieSettings = (settings) => {
-    setPreference("custom");
+  const saveCookieSettings = (settings, preference = "custom") => {
+    setPreference(preference);
     setStoredValue(settingsKey, JSON.stringify({ essential: true, ...settings }));
     if (settings.analytics) loadGoogleAnalytics();
     hideCookieBanner();
@@ -200,11 +200,11 @@ if (cookieBanner || cookieModal) {
   }
 
   cookieBanner?.querySelector(".cookie-accept")?.addEventListener("click", () => {
-    saveCookieSettings({ functionality: true, analytics: true, targeting: true });
+    saveCookieSettings({ functionality: true, analytics: true, targeting: true }, "accepted");
   });
 
   cookieBanner?.querySelector(".cookie-reject")?.addEventListener("click", () => {
-    saveCookieSettings({ functionality: false, analytics: false, targeting: false });
+    saveCookieSettings({ functionality: false, analytics: false, targeting: false }, "rejected");
   });
 
   cookieBanner?.querySelector(".cookie-settings")?.addEventListener("click", showCookieModal);
