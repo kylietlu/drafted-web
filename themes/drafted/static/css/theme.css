@@ -1121,21 +1121,74 @@ form[data-formspree] button[disabled] {
 
 @media (max-width: 620px) {
   .cookie-modal {
-    align-items: flex-start;
-    padding: 16px;
+    align-items: stretch;
+    padding: 10px;
   }
 
   .cookie-modal-card {
-    padding: 28px 24px;
+    display: flex;
+    flex-direction: column;
+    width: calc(100vw - 20px);
+    max-height: calc(100dvh - 20px);
+    padding: 22px 20px 0;
+  }
+
+  .cookie-modal-card h2 {
+    margin-bottom: 10px;
+    font-size: 20px;
+  }
+
+  .cookie-modal-card > p {
+    margin-bottom: 16px;
+    font-size: 13px;
+    line-height: 1.35;
+  }
+
+  .cookie-settings-form {
+    flex: 1;
+    min-height: 0;
+    gap: 14px;
+    overflow: auto;
+    padding-bottom: 88px;
+  }
+
+  .cookie-option {
+    grid-template-columns: 22px 1fr;
+    gap: 10px;
+  }
+
+  .cookie-option input {
+    width: 20px;
+    height: 20px;
+  }
+
+  .cookie-option strong {
+    margin-bottom: 4px;
+    font-size: 14px;
+  }
+
+  .cookie-option small {
+    font-size: 12.5px;
+    line-height: 1.32;
   }
 
   .cookie-modal-actions {
+    position: sticky;
+    bottom: 0;
+    z-index: 2;
     align-items: stretch;
     flex-direction: column;
+    gap: 8px;
+    margin: 10px -20px 0;
+    padding: 12px 20px calc(12px + env(safe-area-inset-bottom));
+    background: linear-gradient(180deg, rgba(255,255,255,0.92), #fff 35%);
+    border-top: 1px solid rgba(0, 0, 0, 0.08);
   }
 
   .cookie-modal-actions .btn {
     justify-content: center;
+    width: 100%;
+    min-height: 42px;
   }
 }
 
