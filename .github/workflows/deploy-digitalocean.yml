@@ -1,0 +1,22 @@
+name: Deploy to DigitalOcean
+
+on:
+  push:
+    branches:
+      - main
+  workflow_dispatch:
+
+jobs:
+  deploy:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Trigger DigitalOcean App Platform deployment
+        env:
+          DIGITALOCEAN_ACCESS_TOKEN: ${{ secrets.DRAFTED_DO_KEY }}
+          DIGITALOCEAN_APP_ID: f307d087-3b72-44ca-be93-d66d92c19ba8
+        run: |
+          curl -fsS -X POST \
+            -H "Authorization: Bearer ${DIGITALOCEAN_ACCESS_TOKEN}" \
+            -H "Content-Type: application/json" \
+            -d '{"force_build": true}' \
+            "https://api.digitalocean.com/v2/apps/${DIGITALOCEAN_APP_ID}/deployments"
