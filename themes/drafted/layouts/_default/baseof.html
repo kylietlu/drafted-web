@@ -12,7 +12,8 @@
     </main>
     {{ partial "footer.html" . }}
     {{ partial "cookie-banner.html" . }}
-    <script src="{{ "js/theme.js" | relURL }}"></script>
+    {{ $themeJSVersion := readFile "themes/drafted/static/js/theme.js" | md5 }}
+    <script src="{{ "js/theme.js" | relURL }}?v={{ $themeJSVersion }}"></script>
     {{ block "extra_scripts" . }}{{ end }}
   </body>
 </html>

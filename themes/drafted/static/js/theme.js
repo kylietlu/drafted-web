@@ -18,6 +18,26 @@ const updateHeaderState = () => {
 updateHeaderState();
 window.addEventListener("scroll", updateHeaderState, { passive: true });
 
+const googleAnalyticsId = "G-C5TM5NBKWK";
+let googleAnalyticsLoaded = false;
+
+const loadGoogleAnalytics = () => {
+  if (!googleAnalyticsId || googleAnalyticsLoaded) return;
+  googleAnalyticsLoaded = true;
+
+  window.dataLayer = window.dataLayer || [];
+  window.gtag = function gtag() {
+    window.dataLayer.push(arguments);
+  };
+  window.gtag("js", new Date());
+  window.gtag("config", googleAnalyticsId, { anonymize_ip: true });
+
+  const script = document.createElement("script");
+  script.async = true;
+  script.src = `https://www.googletagmanager.com/gtag/js?id=${encodeURIComponent(googleAnalyticsId)}`;
+  document.head.appendChild(script);
+};
+
 const updateActiveNavLink = () => {
   if (!siteNav) return;
 
@@ -57,69 +77,161 @@ const updateActiveNavLink = () => {
 updateActiveNavLink();
 window.addEventListener("hashchange", updateActiveNavLink);
 
-for (const form of document.querySelectorAll("form[data-mailto]")) {
-  form.addEventListener("submit", (event) => {
+for (const form of document.querySelectorAll("form[data-formspree]")) {
+  form.addEventListener("submit", async (event) => {
     event.preventDefault();
-    const email = form.getAttribute("data-mailto");
-    const subject = form.getAttribute("data-subject") || "Website form";
-    const data = new FormData(form);
-    const body = Array.from(data.entries())
-      .filter(([, value]) => String(value).trim() !== "")
-      .map(([key, value]) => `${key}: ${value}`)
-      .join("\n");
 
-    window.location.href = `mailto:${encodeURIComponent(email)}?subject=${encodeURIComponent(subject)}&body=${encodeURIComponent(body)}`;
+    const status = form.querySelector("[data-form-status]");
+    const submitButton = form.querySelector('button[type="submit"]');
+    const formData = new FormData(form);
+
+    if (status) {
+      status.textContent = "Sending…";
+      status.classList.remove("is-error", "is-success");
+    }
+    if (submitButton) submitButton.disabled = true;
+
+    try {
+      const response = await fetch(form.action, {
+        method: "POST",
+        body: formData,
+        headers: { Accept: "application/json" },
+      });
+
+      if (!response.ok) throw new Error("Form submission failed");
+
+      form.reset();
+      if (status) {
+        status.textContent = "Thanks! Your message has been sent.";
+        status.classList.add("is-success");
+      }
+    } catch {
+      if (status) {
+        status.textContent = "Something went wrong. Please email me directly at draftedbykylie@gmail.com.";
+        status.classList.add("is-error");
+      }
+    } finally {
+      if (submitButton) submitButton.disabled = false;
+    }
   });
 }
 
 const cookieBanner = document.querySelector(".cookie-banner");
+const cookieModal = document.querySelector(".cookie-modal");
+const cookieSettingsForm = document.querySelector(".cookie-settings-form");
 const cookieSettingsLinks = document.querySelectorAll(".footer-cookie-link");
 
-if (cookieBanner) {
+if (cookieBanner || cookieModal) {
   const key = "drafted-cookie-preference";
-  const getPreference = () => {
+  const settingsKey = "drafted-cookie-settings";
+  const getStoredValue = (storageKey) => {
     try {
-      return window.localStorage.getItem(key);
+      return window.localStorage.getItem(storageKey);
     } catch {
       return null;
     }
   };
-  const setPreference = (value) => {
+  const setStoredValue = (storageKey, value) => {
     try {
-      window.localStorage.setItem(key, value);
+      window.localStorage.setItem(storageKey, value);
     } catch {
-      // Ignore storage failures; the banner should still be usable.
+      // Ignore storage failures; the banner and settings modal should still be usable.
     }
   };
+  const getPreference = () => getStoredValue(key);
+  const setPreference = (value) => setStoredValue(key, value);
   const showCookieBanner = () => {
+    if (!cookieBanner) return;
     cookieBanner.hidden = false;
     cookieBanner.removeAttribute("hidden");
   };
   const hideCookieBanner = () => {
+    if (!cookieBanner) return;
     cookieBanner.hidden = true;
     cookieBanner.setAttribute("hidden", "");
   };
+  const showCookieModal = () => {
+    if (!cookieModal) return;
+    const savedSettings = getStoredValue(settingsKey);
+    if (savedSettings && cookieSettingsForm) {
+      try {
+        const settings = JSON.parse(savedSettings);
+        cookieSettingsForm.elements.functionality.checked = Boolean(settings.functionality);
+        cookieSettingsForm.elements.analytics.checked = Boolean(settings.analytics);
+        cookieSettingsForm.elements.targeting.checked = Boolean(settings.targeting);
+      } catch {
+        // Ignore malformed saved settings.
+      }
+    }
+    hideCookieBanner();
+    cookieModal.hidden = false;
+    cookieModal.removeAttribute("hidden");
+    cookieModal.setAttribute("aria-hidden", "false");
+  };
+  const hideCookieModal = () => {
+    if (!cookieModal) return;
+    cookieModal.hidden = true;
+    cookieModal.setAttribute("hidden", "");
+    cookieModal.setAttribute("aria-hidden", "true");
+  };
+  const analyticsAccepted = () => {
+    const savedSettings = getStoredValue(settingsKey);
+    if (!savedSettings) return getPreference() === "accepted";
+    try {
+      return Boolean(JSON.parse(savedSettings).analytics);
+    } catch {
+      return false;
+    }
+  };
+  const saveCookieSettings = (settings) => {
+    setPreference("custom");
+    setStoredValue(settingsKey, JSON.stringify({ essential: true, ...settings }));
+    if (settings.analytics) loadGoogleAnalytics();
+    hideCookieBanner();
+    hideCookieModal();
+  };
+
+  if (analyticsAccepted()) {
+    loadGoogleAnalytics();
+  }
 
   if (!getPreference()) {
     showCookieBanner();
   }
 
-  cookieBanner.querySelector(".cookie-accept")?.addEventListener("click", () => {
-    setPreference("accepted");
-    hideCookieBanner();
+  cookieBanner?.querySelector(".cookie-accept")?.addEventListener("click", () => {
+    saveCookieSettings({ functionality: true, analytics: true, targeting: true });
   });
 
-  cookieBanner.querySelector(".cookie-reject")?.addEventListener("click", () => {
-    setPreference("rejected");
-    hideCookieBanner();
+  cookieBanner?.querySelector(".cookie-reject")?.addEventListener("click", () => {
+    saveCookieSettings({ functionality: false, analytics: false, targeting: false });
   });
 
-  cookieBanner.querySelector(".cookie-settings")?.addEventListener("click", showCookieBanner);
+  cookieBanner?.querySelector(".cookie-settings")?.addEventListener("click", showCookieModal);
+
+  cookieSettingsForm?.addEventListener("submit", (event) => {
+    event.preventDefault();
+    saveCookieSettings({
+      functionality: Boolean(cookieSettingsForm.elements.functionality?.checked),
+      analytics: Boolean(cookieSettingsForm.elements.analytics?.checked),
+      targeting: Boolean(cookieSettingsForm.elements.targeting?.checked),
+    });
+  });
+
+  cookieModal?.querySelectorAll("[data-cookie-modal-close]").forEach((button) => {
+    button.addEventListener("click", hideCookieModal);
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape" && cookieModal && !cookieModal.hidden) {
+      hideCookieModal();
+    }
+  });
 
   cookieSettingsLinks.forEach((link) => {
     link.addEventListener("click", (event) => {
       event.preventDefault();
-      showCookieBanner();
+      showCookieModal();
     });
   });
 }

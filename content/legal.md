@@ -22,7 +22,7 @@ If you fill out a form, send me a message, or browse this site, some personal da
 Use it to reply, understand how people are using my site, and occasionally look at analytics.
 
 **Who sees it:**  
-Me, my cat Nyxie, and maybe a few tools I use like Google Analytics.
+Me, my cat Nyxie, and maybe a few tools I use like Google Analytics. Google only sees anonymized data (no names or emails), and only to help me understand how people use the site. Nothing sketchy, pinky promise.
 
 **Your rights:**  
 If you're in the EU, that means you can ask to see, fix, or delete your data anytime.
@@ -39,22 +39,17 @@ I'm reeeally good, but I'm not a machine. I do my best to keep things accurate, 
 
 Drafted. is my solo marketing consultancy.
 
-**Email me:**
-
+**Email me:**  
 [draftedbykylie@gmail.com](mailto:draftedbykylie@gmail.com)
 
-**Send me a card:**
-
-Gravin Juliana van Stolberglaan 31
-
-Box G1900
-
+**Send me a card:**  
+Gravin Juliana van Stolberglaan 31  
+Box G1900  
 2263 AB Leidschendam, The Netherlands
 
 *For privacy reasons (and because the internet’s a little too nosy), I don’t list my registered business address here. If you need it for anything official, just ask.*
 
-**Chamber of Commerce number / KVK-nummer:**
-
+**Chamber of Commerce number / KVK-nummer:**  
 97788678
 
 And that’s it! You made it to the bottom. Gold star.

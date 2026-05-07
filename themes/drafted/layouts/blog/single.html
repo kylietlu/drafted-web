@@ -85,7 +85,7 @@
       width: 100%;
       height: clamp(240px, 31vw, 336px);
       object-fit: cover;
-      object-position: center;
+      object-position: var(--article-cover-position, center);
     }
 
     ._1baa4c9d-content {
@@ -628,7 +628,7 @@
       <article class="_1baa4c9d">
         <header class="_1baa4c9d-header _1baa4c9d-header-centered"><h1>{{ .Title }}</h1></header>
         {{ with .Params.image }}
-          <div class="_1baa4c9d-cover"><img src="{{ . }}" alt="{{ $.Title }}"/></div>
+          <div class="_1baa4c9d-cover"{{ with $.Params.cover_position }} style="--article-cover-position: {{ . }};"{{ end }}><img src="{{ . }}" alt="{{ $.Title }}"/></div>
         {{ end }}
         <section class="_1baa4c9d-content">{{ .Content }}</section>
       </article>

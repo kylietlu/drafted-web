@@ -1,4 +1,6 @@
-<form class="site-form inline-form" data-mailto="{{ .Site.Params.email }}" data-subject="{{ .Site.Params.newsletterMailtoSubject }}">
+<form class="site-form inline-form" action="https://formspree.io/f/xrejazwq" method="POST" data-formspree>
+  <input type="hidden" name="_subject" value="{{ .Site.Params.newsletterMailtoSubject }}">
+  <input type="hidden" name="form_type" value="Newsletter signup">
   <div class="form-grid single">
     <label class="span-2">
       <span>Email address *</span>
@@ -6,5 +8,6 @@
     </label>
   </div>
   <p class="form-legal">By submitting this form, I agree to be contacted and for my data to be processed according to the privacy policy.</p>
+  <p class="form-status" data-form-status aria-live="polite"></p>
   <button class="btn primary" type="submit">Submit</button>
 </form>

@@ -56,6 +56,18 @@
 
     .legal-content a {
       color: var(--accent);
+      text-decoration: none;
+    }
+
+    .legal-content a::after {
+      display: none !important;
+      content: none !important;
+    }
+
+    .legal-content a:hover,
+    .legal-content a:focus-visible {
+      text-decoration: underline;
+      text-underline-offset: 0.18em;
     }
   </style>
 {{ end }}

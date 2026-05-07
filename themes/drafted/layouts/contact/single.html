@@ -255,7 +255,7 @@
           <header class="_ad9bbb8a" style="position:relative">
             <h2 class="_f72208fb um-text"><p><span style="color:rgba(0, 0, 0, 0.47);font-size:28px">Don't worry, "us" is just me.</span></p></h2>
             <div class="_5a6ead46 um-text">
-              <p><span style="font-size:16px">If you’ve got a project in mind, a question, or just want to say hi, you can reach me at </span><a href="mailto:{{ .Site.Params.email }}" class="_0141a9f5"><span style="font-size:16px"><strong>{{ .Site.Params.email }}</strong></span></a><span style="font-size:16px"> or use the form on the right.</span></p>
+              <p><span style="font-size:16px">If you’ve got a project in mind, a question, or just want to say hi, you can reach me at </span><a href="mailto:{{ .Site.Params.email }}" class="_0141a9f5"><span style="font-size:16px"><strong>{{ .Site.Params.email }}</strong></span></a><span style="font-size:16px"> or use the form.</span></p>
               <p></p>
               <p><span style="font-size:16px"><strong>Mailing address:</strong></span></p>
               <p><span style="font-size:16px">Gravin Juliana van Stolberglaan 31<br>Box G1900<br>2263 AB Leidschendam, The Netherlands</span></p>
@@ -266,7 +266,9 @@
         </div>
 
         <div class="_df59b79b" style="position:relative;cursor:default">
-          <form class="contact-page-form form form--twoCol" data-mailto="{{ .Site.Params.email }}" data-subject="{{ .Site.Params.contactMailtoSubject }}">
+          <form class="contact-page-form form form--twoCol" action="https://formspree.io/f/xrejazwq" method="POST" data-formspree>
+            <input type="hidden" name="_subject" value="{{ .Site.Params.contactMailtoSubject }}">
+            <input type="hidden" name="form_type" value="Contact page form">
             <div class="cf-field" data-field="text">
               <label>Name<span style="color:darkred"> *</span></label>
               <input type="text" name="name" placeholder="J. Doe" required>
@@ -285,6 +287,7 @@
             </div>
             <div class="ctaWrapper">
               <div class="form-legal"><p>By submitting this form, I agree to be contacted and for my data to be processed according to the privacy policy.</p></div>
+              <p class="form-status" data-form-status aria-live="polite"></p>
               <button class="btn primary" type="submit">Submit</button>
             </div>
           </form>
