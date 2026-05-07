@@ -153,15 +153,24 @@ if (cookieBanner || cookieModal) {
   const showCookieModal = () => {
     if (!cookieModal) return;
     const savedSettings = getStoredValue(settingsKey);
-    if (savedSettings && cookieSettingsForm) {
-      try {
-        const settings = JSON.parse(savedSettings);
-        cookieSettingsForm.elements.functionality.checked = Boolean(settings.functionality);
-        cookieSettingsForm.elements.analytics.checked = Boolean(settings.analytics);
-        cookieSettingsForm.elements.targeting.checked = Boolean(settings.targeting);
-      } catch {
-        // Ignore malformed saved settings.
+    if (cookieSettingsForm) {
+      let settings = {
+        functionality: getPreference() === "accepted",
+        analytics: getPreference() === "accepted",
+        targeting: getPreference() === "accepted",
+      };
+
+      if (savedSettings) {
+        try {
+          settings = { ...settings, ...JSON.parse(savedSettings) };
+        } catch {
+          // Ignore malformed saved settings.
+        }
       }
+
+      cookieSettingsForm.elements.functionality.checked = Boolean(settings.functionality);
+      cookieSettingsForm.elements.analytics.checked = Boolean(settings.analytics);
+      cookieSettingsForm.elements.targeting.checked = Boolean(settings.targeting);
     }
     hideCookieBanner();
     cookieModal.hidden = false;
