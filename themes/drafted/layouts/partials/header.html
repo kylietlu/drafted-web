@@ -6,6 +6,8 @@
       <span></span>
     </button>
 
+    <a class="btn primary header-cta header-cta-mobile" href="{{ "/client-work/" | relURL }}">View portfolio</a>
+
     <nav id="site-nav" class="site-nav">
       <ul>
         {{ $currentPath := .RelPermalink }}
@@ -30,7 +32,7 @@
           </li>
         {{ end }}
       </ul>
-      <a class="btn primary header-cta" href="{{ "/client-work/" | relURL }}">View portfolio</a>
+      <a class="btn primary header-cta header-cta-desktop" href="{{ "/client-work/" | relURL }}">View portfolio</a>
     </nav>
   </div>
 </header>

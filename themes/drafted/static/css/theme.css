@@ -226,6 +226,10 @@ p {
   flex-shrink: 0;
 }
 
+.header-cta-mobile {
+  display: none !important;
+}
+
 .site-nav a {
   color: var(--text);
   padding: 10px;
@@ -469,15 +473,14 @@ p {
 
 .logo-strip {
   overflow: hidden;
-  -webkit-mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
-  mask-image: linear-gradient(to right, transparent 0%, black 12%, black 88%, transparent 100%);
 }
 
 .logo-marquee {
+  --logo-gap: 34px;
   display: flex;
   width: max-content;
   align-items: center;
-  animation: logo-marquee-scroll 24s linear infinite;
+  animation: logo-marquee-scroll 28s linear infinite;
   will-change: transform;
 }
 
@@ -489,8 +492,8 @@ p {
 .logo-track {
   display: flex;
   flex-shrink: 0;
-  gap: 34px;
-  padding-right: 34px;
+  gap: var(--logo-gap);
+  padding-right: var(--logo-gap);
   align-items: center;
 }
 
@@ -508,10 +511,10 @@ p {
 
 @keyframes logo-marquee-scroll {
   0% {
-    transform: translateX(0);
+    transform: translate3d(0, 0, 0);
   }
   100% {
-    transform: translateX(-50%);
+    transform: translate3d(-50%, 0, 0);
   }
 }
 
@@ -1180,11 +1183,26 @@ form[data-formspree] button[disabled] {
     gap: 20px;
   }
 
+  .header-inner {
+    gap: 10px;
+  }
+
+  .header-cta-desktop {
+    display: none !important;
+  }
+
+  .header-cta-mobile {
+    display: inline-flex !important;
+    margin-left: auto;
+    white-space: nowrap;
+  }
+
   .site-nav {
     position: absolute;
     top: 72px;
     left: 16px;
     right: 16px;
+    z-index: 30;
     padding: 18px;
     background: #fafafa;
     border: 1px solid var(--border);
@@ -1213,10 +1231,23 @@ form[data-formspree] button[disabled] {
     font-size: 16px;
   }
 
+  .about-float-image {
+    float: none;
+    display: block;
+    width: min(100%, 280px) !important;
+    max-width: 280px !important;
+    height: auto !important;
+    margin: 0 auto 20px !important;
+  }
+
   ._bea1daea {
     align-items: flex-start;
     flex-direction: column;
     justify-content: flex-start;
+  }
+
+  ._6d77f4ac {
+    order: -1;
   }
 
   .site-form .form-grid,

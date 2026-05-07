@@ -4,9 +4,28 @@ const siteHeader = document.querySelector(".site-header");
 const prefersReducedMotion = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
 
 if (navToggle && siteNav) {
+  const closeNav = () => {
+    siteNav.classList.remove("is-open");
+    navToggle.setAttribute("aria-expanded", "false");
+  };
+
   navToggle.addEventListener("click", () => {
     const open = siteNav.classList.toggle("is-open");
     navToggle.setAttribute("aria-expanded", String(open));
+  });
+
+  document.addEventListener("click", (event) => {
+    if (!siteNav.classList.contains("is-open")) return;
+    if (siteNav.contains(event.target) || navToggle.contains(event.target)) return;
+    closeNav();
+  });
+
+  document.addEventListener("keydown", (event) => {
+    if (event.key === "Escape") closeNav();
+  });
+
+  siteNav.querySelectorAll("a").forEach((link) => {
+    link.addEventListener("click", closeNav);
   });
 }
 

@@ -1,44 +1,35 @@
 <style>
-  a:not(.btn),
-  a:not(.btn):hover,
-  a:not(.btn):focus-visible,
+  .site-header a,
+  .site-header a:hover,
+  .site-header a:focus-visible,
   .blog-title-link,
   .blog-title-link:hover,
-  .blog-title-link:focus-visible,
-  .blog-cta,
-  .blog-cta:hover,
-  .blog-cta:focus-visible,
-  .site-header a:not(.btn),
-  .site-header a:not(.btn):hover,
-  .site-header a:not(.btn):focus-visible,
-  .site-footer a:not(.btn),
-  .site-footer a:not(.btn):hover,
-  .site-footer a:not(.btn):focus-visible,
-  .legal-content a,
-  .legal-content a:hover,
-  .legal-content a:focus-visible,
-  ._0141a9f5,
-  ._0141a9f5:hover,
-  ._0141a9f5:focus-visible,
-  #writing ~ section ._5bfac4a7 a,
-  #writing ~ section ._5bfac4a7 a:hover,
-  #writing ~ section ._5bfac4a7 a:focus-visible {
-    position: relative !important;
-    text-decoration: underline !important;
-    text-underline-offset: 0.18em !important;
-    text-decoration-thickness: 1px !important;
+  .blog-title-link:focus-visible {
+    text-decoration: none !important;
   }
 
-  a:not(.btn):not(.social-link):not(.footer-cookie-link)::after,
-  .blog-title-link::after,
+  .site-header a::after,
+  .blog-title-link::after {
+    display: none !important;
+    content: none !important;
+  }
+
+  a:not(.btn):not(.blog-title-link):not(.social-link):not(.footer-cookie-link),
+  .blog-cta,
+  .legal-content a,
+  ._0141a9f5,
+  #writing ~ section ._5bfac4a7 a {
+    position: relative !important;
+    text-decoration: none !important;
+  }
+
+  a:not(.btn):not(.blog-title-link):not(.social-link):not(.footer-cookie-link)::after,
   .blog-cta::after,
-  .site-header a:not(.btn)::after,
-  .site-footer a:not(.btn):not(.social-link)::after,
   .legal-content a::after,
   ._0141a9f5::after,
   #writing ~ section ._5bfac4a7 a::after {
     content: "" !important;
-    display: block !important;
+    display: none !important;
     position: absolute !important;
     left: 0 !important;
     bottom: -0.18em !important;
@@ -46,31 +37,37 @@
     height: 0.38em !important;
     border-radius: 999px !important;
     background: color-mix(in srgb, var(--accent), transparent 84%) !important;
-    transform: scaleX(0) !important;
-    transform-origin: left center !important;
-    transition: transform 0.25s ease, opacity 0.25s ease !important;
-    opacity: 0 !important;
+    transform: none !important;
+    opacity: 1 !important;
     z-index: -1 !important;
   }
 
-  a:not(.btn):not(.social-link):not(.footer-cookie-link):hover::after,
-  a:not(.btn):not(.social-link):not(.footer-cookie-link):focus-visible::after,
-  .blog-title-link:hover::after,
-  .blog-title-link:focus-visible::after,
+  a:not(.btn):not(.blog-title-link):not(.social-link):not(.footer-cookie-link):hover,
+  a:not(.btn):not(.blog-title-link):not(.social-link):not(.footer-cookie-link):focus-visible,
+  .blog-cta:hover,
+  .blog-cta:focus-visible,
+  .legal-content a:hover,
+  .legal-content a:focus-visible,
+  ._0141a9f5:hover,
+  ._0141a9f5:focus-visible,
+  #writing ~ section ._5bfac4a7 a:hover,
+  #writing ~ section ._5bfac4a7 a:focus-visible {
+    text-decoration: underline !important;
+    text-underline-offset: 0.18em !important;
+    text-decoration-thickness: 1px !important;
+  }
+
+  a:not(.btn):not(.blog-title-link):not(.social-link):not(.footer-cookie-link):hover::after,
+  a:not(.btn):not(.blog-title-link):not(.social-link):not(.footer-cookie-link):focus-visible::after,
   .blog-cta:hover::after,
   .blog-cta:focus-visible::after,
-  .site-header a:not(.btn):hover::after,
-  .site-header a:not(.btn):focus-visible::after,
-  .site-footer a:not(.btn):not(.social-link):hover::after,
-  .site-footer a:not(.btn):not(.social-link):focus-visible::after,
   .legal-content a:hover::after,
   .legal-content a:focus-visible::after,
   ._0141a9f5:hover::after,
   ._0141a9f5:focus-visible::after,
   #writing ~ section ._5bfac4a7 a:hover::after,
   #writing ~ section ._5bfac4a7 a:focus-visible::after {
-    transform: scaleX(1) !important;
-    opacity: 1 !important;
+    display: block !important;
   }
 
   .site-header .site-nav {
@@ -146,14 +143,13 @@
   }
 
   .site-footer a:not(.social-link):not(.footer-cookie-link) {
-    transition: color 0.22s ease, opacity 0.22s ease, transform 0.22s ease;
+    transition: color 0.22s ease, opacity 0.22s ease;
   }
 
   .site-footer a:not(.social-link):not(.footer-cookie-link):hover,
   .site-footer a:not(.social-link):not(.footer-cookie-link):focus-visible {
     color: var(--accent) !important;
     opacity: 1;
-    transform: translateX(4px);
   }
 
   .site-footer .social-link {
@@ -169,5 +165,59 @@
   .site-footer .social-link:focus-visible {
     color: var(--accent) !important;
     transform: translateY(-2px);
+  }
+
+  body .site-header .site-nav a:not(.btn):not(.blog-title-link):not(.social-link):not(.footer-cookie-link),
+  body .site-header .site-nav a:not(.btn):not(.blog-title-link):not(.social-link):not(.footer-cookie-link):hover,
+  body .site-header .site-nav a:not(.btn):not(.blog-title-link):not(.social-link):not(.footer-cookie-link):focus-visible,
+  body .site-header .site-nav a:not(.btn):not(.blog-title-link):not(.social-link):not(.footer-cookie-link).is-active {
+    text-decoration: none !important;
+  }
+
+  body .site-header .site-nav a:not(.btn):not(.blog-title-link):not(.social-link):not(.footer-cookie-link)::after,
+  body .site-header .site-nav a:not(.btn):not(.blog-title-link):not(.social-link):not(.footer-cookie-link):hover::after,
+  body .site-header .site-nav a:not(.btn):not(.blog-title-link):not(.social-link):not(.footer-cookie-link):focus-visible::after,
+  body .site-header .site-nav a:not(.btn):not(.blog-title-link):not(.social-link):not(.footer-cookie-link).is-active::after {
+    display: none !important;
+    content: none !important;
+  }
+
+  body a:not(.btn)::after,
+  body a:not(.btn):hover::after,
+  body a:not(.btn):focus-visible::after {
+    display: none !important;
+    content: none !important;
+  }
+
+  body a:not(.btn):not(.social-link):not(.blog-title-link):not(.header-cta):not(.footer-cookie-link):not(.site-nav a):hover,
+  body a:not(.btn):not(.social-link):not(.blog-title-link):not(.header-cta):not(.footer-cookie-link):not(.site-nav a):focus-visible {
+    color: var(--accent) !important;
+    text-decoration: underline !important;
+    text-underline-offset: 0.18em !important;
+    text-decoration-thickness: 1px !important;
+    background: none !important;
+    background-color: transparent !important;
+    box-shadow: none !important;
+  }
+
+  body a:not(.btn):not(.blog-title-link):not(.social-link):not(.footer-cookie-link):hover::after,
+  body a:not(.btn):not(.blog-title-link):not(.social-link):not(.footer-cookie-link):focus-visible::after,
+  body .legal-content a::after,
+  body .legal-content a:hover::after,
+  body .legal-content a:focus-visible::after,
+  body ._0141a9f5::after,
+  body ._0141a9f5:hover::after,
+  body ._0141a9f5:focus-visible::after,
+  body ._1baa4c9d-content a::after,
+  body ._1baa4c9d-content a:hover::after,
+  body ._1baa4c9d-content a:focus-visible::after,
+  body .site-footer a::after,
+  body .site-footer a:hover::after,
+  body .site-footer a:focus-visible::after,
+  body #writing ~ section ._5bfac4a7 a::after,
+  body #writing ~ section ._5bfac4a7 a:hover::after,
+  body #writing ~ section ._5bfac4a7 a:focus-visible::after {
+    display: none !important;
+    content: none !important;
   }
 </style>
