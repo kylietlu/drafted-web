@@ -818,7 +818,10 @@ p {
 
 .site-footer .wr {
   width: min(var(--container), calc(100% - 32px));
+  max-width: none;
   margin: 0 auto;
+  padding: 0;
+  box-sizing: content-box;
 }
 
 ._bea1daea {
