@@ -9,7 +9,6 @@ Let's keep this simple. Below is all the legal stuff I'm supposed to tell you: c
 ## Cookies (Not the fun kind)
 
 This site uses cookies. Not the  chocolate chip kind, but the tracking kind.
-
 Some cookies help the site function. Others (like Google Analytics) help me understand what's working (or not—gasp!) on my site.
 
 You'll get a cookie banner when you visit so you can choose your own adventure, and there's always a little button in the bottom left of the footer if you ever want to change your cookie settings later.
@@ -26,7 +25,6 @@ Me, my cat Nyxie, and maybe a few tools I use like Google Analytics. Google only
 
 **Your rights:**  
 If you're in the EU, that means you can ask to see, fix, or delete your data anytime.
-
 If you're not in the EU, I'll extend you the same courtesy. Just email me and I'll take care of it.
 
 ## Obligatory disclaimer
