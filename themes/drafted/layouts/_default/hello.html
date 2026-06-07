@@ -1,0 +1,541 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    {{ partial "head.html" . }}
+    {{ partial "link-hover-overrides.html" . }}
+    <style>
+      body.hello-landing {
+        min-height: 100vh;
+        background: #fff;
+        color: #3d4145;
+        font-family: "Noto Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+      }
+
+      .hello-shell {
+        min-height: 100vh;
+        display: flex;
+        flex-direction: column;
+      }
+
+      .hello-topbar {
+        height: 76px;
+        display: flex;
+        align-items: center;
+        border-top: 1px solid #dedede;
+        border-bottom: 1px solid rgba(224, 224, 224, 0.72);
+        background: rgba(250, 250, 250, 0.72);
+      }
+
+      .hello-inner {
+        width: min(1140px, calc(100% - 112px));
+        margin: 0 auto;
+      }
+
+      body.hello-landing .hello-home-link {
+        display: inline-flex;
+        color: var(--text) !important;
+        padding: 10px;
+        font-weight: 500;
+        border-radius: 999px;
+        text-decoration: none !important;
+        transition: color 0.22s ease, background-color 0.22s ease, box-shadow 0.22s ease, transform 0.22s ease;
+      }
+
+      body.hello-landing .hello-home-link::after,
+      body.hello-landing .hello-home-link:hover::after,
+      body.hello-landing .hello-home-link:focus-visible::after {
+        display: none !important;
+        content: none !important;
+      }
+
+      body.hello-landing .hello-home-link:hover,
+      body.hello-landing .hello-home-link:focus-visible,
+      body.hello-landing a.hello-home-link:not(.btn):not(.social-link):not(.blog-title-link):not(.header-cta):not(.footer-cookie-link):not(.site-nav a):hover,
+      body.hello-landing a.hello-home-link:not(.btn):not(.social-link):not(.blog-title-link):not(.header-cta):not(.footer-cookie-link):not(.site-nav a):focus-visible {
+        color: var(--accent) !important;
+        background-color: color-mix(in srgb, var(--accent), transparent 91%) !important;
+        box-shadow: 0 8px 22px -18px color-mix(in srgb, var(--accent), black 35%) !important;
+        transform: translateY(-1px) !important;
+        text-decoration: none !important;
+        text-underline-offset: initial !important;
+        text-decoration-thickness: initial !important;
+      }
+
+      .hello-main {
+        flex: 1;
+      }
+
+      .hello-hero {
+        width: min(1200px, calc(100% - 80px));
+        display: grid;
+        grid-template-columns: minmax(0, 600px) minmax(430px, 520px);
+        gap: 80px;
+        align-items: start;
+        padding-top: 93px;
+        padding-bottom: 86px;
+      }
+
+      .hello-copy {
+        padding-top: 5px;
+        padding-left: 30px;
+      }
+
+      .hello-title {
+        max-width: 600px;
+        margin: 0 0 25px;
+        color: #393941;
+        font-size: 41px;
+        font-weight: 800;
+        line-height: 1.18;
+        letter-spacing: 0;
+      }
+
+      .hello-title-accent {
+        color: #008a94;
+      }
+
+      .hello-intro {
+        max-width: 620px;
+        margin: 0 0 35px 4px;
+        color: #626262;
+        font-size: 20px;
+        line-height: 1.55;
+        letter-spacing: 0;
+      }
+
+      .hello-intro strong {
+        color: #008a94;
+        font-weight: 800;
+      }
+
+      .hello-intro em {
+        color: #34343b;
+        font-style: italic;
+        font-weight: 800;
+      }
+
+      .hello-list {
+        margin: 0 0 32px;
+        padding: 0;
+        color: #34343b;
+        font-size: 21px;
+        font-weight: 800;
+        line-height: 1.18;
+        letter-spacing: 0;
+        list-style: none;
+      }
+
+      .hello-list li {
+        position: relative;
+        padding-left: 17px;
+      }
+
+      .hello-list li::before {
+        content: "\2713";
+        position: absolute;
+        left: 0;
+        top: 0.02em;
+        color: #34343b;
+        font-size: 15px;
+        font-weight: 700;
+      }
+
+      .hello-button {
+        min-width: 134px;
+        margin-left: 0;
+      }
+
+      .hello-card {
+        width: 100%;
+        margin-top: 0;
+        padding: 14px 32px 31px;
+        color: #757575;
+        background: #fff;
+        border: 1px solid #e3e3e3;
+        border-radius: 8px;
+        box-shadow: 0 10px 28px -18px rgba(0, 0, 0, 0.3);
+      }
+
+      .hello-card-title {
+        margin: 0 0 6px;
+        color: #33333a;
+        font-size: 24px;
+        font-weight: 800;
+        line-height: 1.35;
+        text-align: center;
+      }
+
+      .hello-form {
+        display: grid;
+        gap: 18px;
+      }
+
+      .hello-field {
+        display: flex;
+        flex-direction: column;
+        gap: 7px;
+      }
+
+      .hello-field label {
+        color: #6c6c6c;
+        font-size: 16px;
+        font-weight: 500;
+        line-height: 1;
+      }
+
+      .hello-required {
+        color: #8b1a1a;
+        font-weight: 800;
+      }
+
+      .hello-field input,
+      .hello-field textarea {
+        width: 100%;
+        box-sizing: border-box;
+        border: 1px solid #e6e6e6;
+        border-radius: 4px;
+        background: #fff;
+        color: #3d4145;
+        font: 14px/1.4 "Noto Sans", -apple-system, BlinkMacSystemFont, "Segoe UI", Helvetica, Arial, sans-serif;
+        outline: none;
+      }
+
+      .hello-field input {
+        min-height: 36px;
+        padding: 0 10px;
+      }
+
+      .hello-field textarea {
+        min-height: 106px;
+        padding: 11px 10px;
+        resize: vertical;
+      }
+
+      .hello-field input::placeholder,
+      .hello-field textarea::placeholder {
+        color: #898989;
+      }
+
+      .hello-field input:focus,
+      .hello-field textarea:focus {
+        border-color: rgba(0, 138, 148, 0.72);
+        box-shadow: 0 0 0 3px rgba(0, 138, 148, 0.1);
+      }
+
+      .hello-legal {
+        margin: 0;
+        color: #828282;
+        font-size: 13px;
+        font-weight: 400;
+        line-height: 1.48;
+      }
+
+      .hello-status {
+        margin: 0;
+        font-size: 14px;
+        line-height: 1.4;
+      }
+
+      .hello-status:empty {
+        display: none;
+      }
+
+      .hello-submit {
+        width: 100%;
+        margin-top: 6px;
+      }
+
+      body.hello-landing .site-footer {
+        display: block;
+        padding: 2px 0 99px;
+        border-top: 0 !important;
+        background: #fff;
+      }
+
+      body.hello-landing .site-footer .wr {
+        width: min(1140px, calc(100% - 112px));
+        margin: 0 auto;
+        padding: 0;
+      }
+
+      body.hello-landing .site-footer ._bea1daea {
+        display: grid;
+        grid-template-columns: minmax(0, 1fr) auto;
+        gap: 56px;
+        align-items: start;
+      }
+
+      body.hello-landing .site-footer ._c0e4633f p {
+        margin: 0 0 9px;
+        color: #777;
+        font-size: 16px;
+        line-height: 1.45;
+      }
+
+      body.hello-landing .site-footer .footer-kvk-inline {
+        color: rgba(0, 0, 0, 0.47);
+        font-size: 14px;
+      }
+
+      body.hello-landing .site-footer ._a6d0f97b {
+        margin: 4px 0 15px;
+      }
+
+      body.hello-landing .site-footer ._9fc8f72f {
+        width: 63px;
+      }
+
+      body.hello-landing .site-footer ._4dba2c1d {
+        margin: 0 0 25px;
+      }
+
+      body.hello-landing .site-footer ._3d4606c5 {
+        color: #6a6a6a !important;
+      }
+
+      body.hello-landing .site-footer ._3d4606c5::after,
+      body.hello-landing .site-footer ._3d4606c5:hover::after,
+      body.hello-landing .site-footer ._3d4606c5:focus-visible::after {
+        display: none !important;
+        content: none !important;
+      }
+
+      body.hello-landing .site-footer ._370825cf {
+        margin: 0;
+      }
+
+      body.hello-landing .site-footer ._370825cf > * {
+        margin: 0;
+      }
+
+      body.hello-landing .site-footer .footer-cookie-link {
+        color: #777;
+        font-size: 15px;
+        line-height: 1;
+      }
+
+      body.hello-landing .site-footer .footer-cookie-link:hover,
+      body.hello-landing .site-footer .footer-cookie-link:focus-visible {
+        color: #008a94 !important;
+        transform: none;
+      }
+
+      body.hello-landing .site-footer ._6d77f4ac {
+        display: flex;
+        gap: 80px;
+        margin: 0;
+        padding: 0;
+      }
+
+      body.hello-landing .site-footer ._f7277ae9 {
+        margin: 0 0 8px;
+        color: #393941;
+        font-size: 16px;
+        font-weight: 800 !important;
+        line-height: 1.2;
+      }
+
+      body.hello-landing .site-footer ._f7277ae9 p {
+        font-weight: 800 !important;
+      }
+
+      body.hello-landing .site-footer ._a1fe80f4 {
+        display: grid;
+        gap: 11px;
+      }
+
+      body.hello-landing .site-footer ._171c7314 {
+        padding: 0;
+      }
+
+      body.hello-landing .site-footer ._7d179ab3 {
+        padding: 0;
+        color: #737373 !important;
+        font-size: 15px;
+        font-weight: 400 !important;
+        line-height: 1.4;
+        text-decoration: none !important;
+      }
+
+      body.hello-landing .site-footer ._7d179ab3::after,
+      body.hello-landing .site-footer ._7d179ab3:hover::after,
+      body.hello-landing .site-footer ._7d179ab3:focus-visible::after {
+        display: none !important;
+        content: none !important;
+      }
+
+      body.hello-landing .site-footer ._7d179ab3:hover,
+      body.hello-landing .site-footer ._7d179ab3:focus-visible {
+        color: #008a94 !important;
+        transform: none;
+        text-decoration: none !important;
+      }
+
+      @media (max-width: 980px) {
+        .hello-inner {
+          width: min(100% - 40px, 720px);
+        }
+
+        .hello-hero {
+          width: min(100% - 40px, 720px);
+          grid-template-columns: 1fr;
+          gap: 44px;
+          padding-top: 56px;
+        }
+
+        .hello-copy {
+          padding-left: 0;
+        }
+
+        .hello-title {
+          max-width: none;
+          font-size: 40px;
+        }
+
+        .hello-intro {
+          max-width: none;
+          margin-bottom: 36px;
+        }
+
+        .hello-card {
+          max-width: 560px;
+        }
+
+        body.hello-landing .site-footer .wr {
+          width: min(100% - 40px, 720px);
+        }
+
+        body.hello-landing .site-footer ._bea1daea {
+          grid-template-columns: 1fr;
+        }
+
+        body.hello-landing .site-footer ._6d77f4ac {
+          order: -1;
+        }
+      }
+
+      @media (max-width: 640px) {
+        .hello-topbar {
+          height: 66px;
+        }
+
+        .hello-inner {
+          width: min(100% - 32px, 520px);
+        }
+
+        .hello-hero {
+          padding-top: 44px;
+          padding-bottom: 66px;
+        }
+
+        .hello-title {
+          font-size: 34px;
+          line-height: 1.16;
+        }
+
+        .hello-intro {
+          margin-left: 0;
+          font-size: 17px;
+        }
+
+        .hello-list {
+          font-size: 18px;
+        }
+
+        .hello-button {
+          margin-left: 0;
+        }
+
+        .hello-card {
+          padding: 18px 18px 24px;
+        }
+
+        .hello-card-title {
+          font-size: 22px;
+        }
+
+        body.hello-landing .site-footer .wr {
+          width: min(100% - 32px, 520px);
+        }
+
+        body.hello-landing .site-footer ._6d77f4ac {
+          gap: 44px;
+          flex-wrap: wrap;
+        }
+      }
+    </style>
+  </head>
+  <body class="hello-landing">
+    <div class="hello-shell">
+      <header class="hello-topbar">
+        <div class="hello-inner">
+          <a class="hello-home-link" href="{{ "/" | relURL }}">Home</a>
+        </div>
+      </header>
+
+      <main class="hello-main">
+        <section class="hello-hero hello-inner" aria-labelledby="hello-title">
+          <div class="hello-copy">
+            <h1 class="hello-title" id="hello-title">
+              Need a marketer who can<br>
+              build, improve, and<br>
+              <span class="hello-title-accent">keep things moving?</span>
+            </h1>
+
+            <p class="hello-intro">
+              <strong>Drafted.</strong> is a solo marketing consultancy built on years of experience working with global B2B tech brands. Sharpen your messaging, speed up delivery, and make sure your content actually <em>works.</em>
+            </p>
+
+            <ul class="hello-list" aria-label="Services">
+              <li>Content strategy &amp; messaging</li>
+              <li>Website copy, case studies &amp; thought leadership</li>
+              <li>Campaign support &amp; marketing operations</li>
+              <li>Marketing setup, reviews &amp; recommendations</li>
+            </ul>
+
+            <a class="hello-button btn primary" href="{{ "/client-work/" | relURL }}">View portfolio</a>
+          </div>
+
+          <aside class="hello-card" aria-label="Contact form">
+            <h2 class="hello-card-title">Let's get the conversation started.</h2>
+
+            <form class="hello-form" action="https://formspree.io/f/xrejazwq" method="POST" data-formspree>
+              <input type="hidden" name="_subject" value="{{ .Site.Params.contactMailtoSubject }}">
+              <input type="hidden" name="form_type" value="Hello landing page form">
+
+              <div class="hello-field">
+                <label for="hello-name">Name <span class="hello-required">*</span></label>
+                <input id="hello-name" type="text" name="name" placeholder="J. Doe" required>
+              </div>
+
+              <div class="hello-field">
+                <label for="hello-company">Company</label>
+                <input id="hello-company" type="text" name="company" placeholder="Company Inc.">
+              </div>
+
+              <div class="hello-field">
+                <label for="hello-email">Email <span class="hello-required">*</span></label>
+                <input id="hello-email" type="email" name="email" placeholder="example@mail.com" required>
+              </div>
+
+              <div class="hello-field">
+                <label for="hello-message">Message: <span class="hello-required">*</span></label>
+                <textarea id="hello-message" name="message" placeholder="I'm reaching out because..." required></textarea>
+              </div>
+
+              <p class="hello-legal">By submitting this form, I agree to be contacted and for my data to be processed according to the privacy policy.</p>
+              <p class="hello-status form-status" data-form-status aria-live="polite"></p>
+              <button class="hello-submit btn primary" type="submit">Submit</button>
+            </form>
+          </aside>
+        </section>
+      </main>
+
+      {{ partial "footer.html" . }}
+    </div>
+
+    {{ partial "cookie-banner.html" . }}
+    {{ $themeJSVersion := readFile "themes/drafted/static/js/theme.js" | md5 }}
+    <script src="{{ "js/theme.js" | relURL }}?v={{ $themeJSVersion }}"></script>
+  </body>
+</html>
