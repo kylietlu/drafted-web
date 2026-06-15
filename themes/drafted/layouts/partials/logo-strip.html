@@ -11,7 +11,7 @@
   (dict "src" "/images/logos/google-cloud.png" "alt" "Google Cloud")
   (dict "src" "/images/logos/pho-delta.webp" "alt" "PhotonDelta")
   (dict "src" "/images/logos/cionet.png" "alt" "CIONET")
-  (dict "src" "/images/logos/ember-security.svg" "alt" "Ember Security")
+  (dict "kind" "ember" "src" "/images/logos/ember.svg" "alt" "Ember Security")
 }}
 <section class="{{ $sectionClass }}">
   <div class="{{ $wrapClass }}">
@@ -20,12 +20,26 @@
       <div class="logo-marquee">
         <div class="logo-track">
           {{ range $logos }}
-            <img src="{{ .src | relURL }}" alt="{{ .alt }}">
+            {{ if eq .kind "ember" }}
+              <span class="ember-logo" role="img" aria-label="{{ .alt }}">
+                <img src="{{ .src | relURL }}" alt="">
+                <span><strong>Ember</strong> Security</span>
+              </span>
+            {{ else }}
+              <img src="{{ .src | relURL }}" alt="{{ .alt }}">
+            {{ end }}
           {{ end }}
         </div>
         <div class="logo-track" aria-hidden="true">
           {{ range $logos }}
-            <img src="{{ .src | relURL }}" alt="">
+            {{ if eq .kind "ember" }}
+              <span class="ember-logo">
+                <img src="{{ .src | relURL }}" alt="">
+                <span><strong>Ember</strong> Security</span>
+              </span>
+            {{ else }}
+              <img src="{{ .src | relURL }}" alt="">
+            {{ end }}
           {{ end }}
         </div>
       </div>
