@@ -486,7 +486,9 @@
         <section class="hello-hero hello-inner" aria-labelledby="hello-title">
           <div class="hello-copy">
             <h1 class="hello-title" id="hello-title">
-              {{ with .Params.heroTitle }}
+              {{ with .Params.heroTitleHtml }}
+                {{ . | safeHTML }}
+              {{ else with .Params.heroTitle }}
                 {{ . }}
               {{ else }}
                 Need a marketer<br>
