@@ -397,6 +397,10 @@
           font-size: 40px;
         }
 
+        .hello-title br {
+          display: none;
+        }
+
         .hello-intro {
           max-width: none;
           margin-bottom: 36px;
@@ -436,10 +440,6 @@
         .hello-title {
           font-size: 34px;
           line-height: 1.16;
-        }
-
-        .hello-title br {
-          display: none;
         }
 
         .hello-intro {
@@ -489,9 +489,9 @@
               {{ with .Params.heroTitle }}
                 {{ . }}
               {{ else }}
-                Need a marketer who can<br>
-                build, improve, and<br>
-                <span class="hello-title-accent">keep things moving?</span>
+                Need a marketer<br>
+                who can build, improve,<br>
+                and <span class="hello-title-accent">keep things moving?</span>
               {{ end }}
             </h1>
 
