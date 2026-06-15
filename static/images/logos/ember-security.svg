@@ -1,0 +1,25 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 114" role="img" aria-labelledby="emberSecurityTitle">
+  <title id="emberSecurityTitle">Ember Security</title>
+  <g transform="translate(0 0) scale(0.0997)">
+    <path
+      fill="#111118"
+      transform="matrix(-1.119998 0 0 1.119998 1214.746739 -80.154058)"
+      d="M640 71.566 195.403 328.255v505.748L640 1091.274l444.597-257.271V328.255L640 71.566Z"
+    />
+    <path
+      fill="#fff"
+      transform="matrix(-1 0 0 1 1137.947945 -11.636993)"
+      d="m947.841 745.593.059.034L640 923.221 332.1 745.627 614.769 582.6 615 86 195.403 328.255v268.938L332.1 518.37l-.013-104.016 145.268-83.871v161.61L195.403 654.878v179.125L640 1091.274l444.597-257.271V328.255L665 86l.231 496.6L897.9 716.79V547.089l-95.255-54.996v-161.61l145.268 83.871-.007 84.239h-.009v44h.003v203h-.059Z"
+    />
+  </g>
+  <text
+    x="128"
+    y="65"
+    fill="#111118"
+    dominant-baseline="middle"
+    font-family="'IBM Plex Sans', Arial, sans-serif"
+    font-size="62"
+    letter-spacing="0"
+    text-transform="uppercase"
+  ><tspan font-weight="700">Ember</tspan><tspan font-weight="400"> Security</tspan></text>
+</svg>
