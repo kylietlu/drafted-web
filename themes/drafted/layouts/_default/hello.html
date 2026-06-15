@@ -117,7 +117,7 @@
       .hello-list {
         margin: 0 0 32px;
         padding: 0;
-        color: #34343b;
+        color: #626262;
         font-size: 21px;
         font-weight: 800;
         line-height: 1.18;
@@ -126,18 +126,18 @@
       }
 
       .hello-list li {
-        position: relative;
-        padding-left: 17px;
+        display: grid;
+        grid-template-columns: 16px minmax(0, 1fr);
+        column-gap: 8px;
+        align-items: baseline;
       }
 
       .hello-list li::before {
         content: "\2713";
-        position: absolute;
-        left: 0;
-        top: 0.02em;
-        color: #34343b;
+        color: #008a94;
         font-size: 15px;
         font-weight: 700;
+        line-height: 1;
       }
 
       .hello-button {
@@ -243,6 +243,11 @@
       .hello-submit {
         width: 100%;
         margin-top: 6px;
+      }
+
+      .hello-logo-strip {
+        padding-top: 4px;
+        padding-bottom: 80px;
       }
 
       body.hello-landing .site-footer {
@@ -477,20 +482,24 @@
         <section class="hello-hero hello-inner" aria-labelledby="hello-title">
           <div class="hello-copy">
             <h1 class="hello-title" id="hello-title">
-              Need a marketer who can<br>
-              build, improve, and<br>
-              <span class="hello-title-accent">keep things moving?</span>
+              {{ with .Params.heroTitle }}
+                {{ . }}
+              {{ else }}
+                Need a marketer who can<br>
+                build, improve, and<br>
+                <span class="hello-title-accent">keep things moving?</span>
+              {{ end }}
             </h1>
 
             <p class="hello-intro">
-              <strong>Drafted.</strong> is a solo marketing consultancy built on years of experience working with global B2B tech brands. Sharpen your messaging, speed up delivery, and make sure your content actually <em>works.</em>
+              <strong>Drafted.</strong> is a solo marketing consultancy with a decade of experience working in B2B tech. I help teams sharpen their messaging, strengthen their content, improve digital experiences, and uncover the friction points getting in the way of results.
             </p>
 
             <ul class="hello-list" aria-label="Services">
-              <li>Content strategy &amp; messaging</li>
-              <li>Website copy, case studies &amp; thought leadership</li>
-              <li>Campaign support &amp; marketing operations</li>
               <li>Marketing setup, reviews &amp; recommendations</li>
+              <li>Website copy &amp; messaging</li>
+              <li>Content strategy &amp; delivery</li>
+              <li>Campaign support &amp; operations</li>
             </ul>
 
             <a class="hello-button btn primary" href="{{ "/client-work/" | relURL }}">View portfolio</a>
@@ -529,6 +538,9 @@
             </form>
           </aside>
         </section>
+        {{ if .Params.showLogoStrip }}
+          {{ partial "logo-strip.html" (dict "sectionClass" "hello-logo-strip logo-strip-section" "wrapClass" "hello-inner") }}
+        {{ end }}
       </main>
 
       {{ partial "footer.html" . }}

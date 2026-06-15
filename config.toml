@@ -17,6 +17,10 @@ theme = "drafted"
   linkedin = "https://www.linkedin.com/company/drafted-marketing"
   contactMailtoSubject = "Drafted website inquiry"
   newsletterMailtoSubject = "Newsletter signup"
+  previewImage = "/images/hero.jpg"
+  previewImageWidth = 989
+  previewImageHeight = 734
+  previewImageAlt = "Drafted content marketing consultancy"
 
 [menu]
   [[menu.main]]
