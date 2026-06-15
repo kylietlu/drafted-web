@@ -278,6 +278,7 @@
           <form class="contact-page-form form form--twoCol" action="https://formspree.io/f/xrejazwq" method="POST" data-formspree>
             <input type="hidden" name="_subject" value="{{ .Site.Params.contactMailtoSubject }}">
             <input type="hidden" name="form_type" value="Contact page form">
+            {{ partial "form-source-fields.html" . }}
             <div class="cf-field" data-field="text">
               <label>Name<span style="color:darkred"> *</span></label>
               <input type="text" name="name" placeholder="J. Doe" required>

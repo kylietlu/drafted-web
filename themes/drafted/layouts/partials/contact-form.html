@@ -1,6 +1,7 @@
 <form class="site-form" action="https://formspree.io/f/xrejazwq" method="POST" data-formspree>
   <input type="hidden" name="_subject" value="{{ .Site.Params.contactMailtoSubject }}">
   <input type="hidden" name="form_type" value="Contact form">
+  {{ partial "form-source-fields.html" . }}
   <div class="form-grid">
     <label>
       <span>Name *</span>

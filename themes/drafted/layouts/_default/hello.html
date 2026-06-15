@@ -517,6 +517,7 @@
             <form class="hello-form" action="https://formspree.io/f/xrejazwq" method="POST" data-formspree>
               <input type="hidden" name="_subject" value="{{ .Site.Params.contactMailtoSubject }}">
               <input type="hidden" name="form_type" value="Hello landing page form">
+              {{ partial "form-source-fields.html" . }}
 
               <div class="hello-field">
                 <label for="hello-name">Name <span class="hello-required">*</span></label>
